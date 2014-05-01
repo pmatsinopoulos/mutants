@@ -17,3 +17,12 @@ Feature: Task Management
      And I click on the Save button
     Then I get a confirmation that task has been created successfully
 
+  Scenario: Try to create a new task with same name as existing one should fail
+    Given A list of tasks
+      | Name |
+      | Kill Aardwolf |
+    When I visit the create new task page
+     And I fill in the name "Kill Aardwolf"
+     And I click on the Save button
+    Then I get an error message
+

@@ -47,3 +47,10 @@ Then(/^I get a confirmation that task has been created successfully$/) do
 
   expect(@edit_task_page.flash).to eq("Task has been created successfully!")
 end
+
+Then(/^I get an error message$/) do
+  @new_task_page = Mutants::Pages::NewTask.new
+  expect(@new_task_page).to be_displayed
+
+  expect(@new_task_page.flash).to eq("Cannot create task!")
+end
