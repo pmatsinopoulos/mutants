@@ -136,3 +136,17 @@ Then(/^I am on the task list page$/) do
   @task_management_page = Mutants::Pages::TaskManagement.new
   expect(@task_management_page).to be_displayed
 end
+
+And(/^I click on task with name "(.*?)"$/) do |task_name|
+  task = Mutants::Task.find_by_name! task_name
+  @task_list = @task_management_page.task_list_items
+  task_list_item = @task_list.select {|t| t.id == task.id}.first
+  task_list_item.edit_page.click
+end
+
+Then(/^I see the edit page of the task with name "(.*?)"$/) do |task_name|
+  task = Mutants::Task.find_by_name! task_name
+  edit_page = Mutants::Pages::EditTask.new
+  expect(edit_page).to be_displayed
+  expect(edit_page.task_name.value).to eq(task_name)
+end

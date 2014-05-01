@@ -80,3 +80,12 @@ Feature: Task Management
     When I visit the create new task page
     And I click on the task list link
     Then I am on the task list page
+
+  Scenario: When I am on the task list page I can click on the name of a task and that would take me to the edit task page
+    Given A list of tasks
+      | Name             |
+      | Kill Aardwolf    |
+      | Help Tyger Tiger |
+    When I visit tasks management page
+     And I click on task with name "Help Tyger Tiger"
+    Then I see the edit page of the task with name "Help Tyger Tiger"
