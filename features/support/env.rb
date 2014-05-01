@@ -59,3 +59,12 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'factory_girl_rails'
 
 include FactoryGirl::Syntax::Methods
+
+page_objects_path = File.join(Rails.root, 'page_objects')
+
+Dir.glob(File.join(page_objects_path, '**', '*')).select {|entry| File.directory?(entry) }.each do |d|
+  $LOAD_PATH.unshift(d) unless $LOAD_PATH.include?(d)
+end
+
+require "task_management"
+

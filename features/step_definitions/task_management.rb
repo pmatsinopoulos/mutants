@@ -11,7 +11,8 @@ Given(/^A list of tasks$/) do |table|
 end
 
 When(/^I visit tasks management page$/) do
-  pending # express the regexp above with the code you wish you had
+  @task_management_page = Mutants::Pages::TaskManagement.new
+  @task_management_page.load
 end
 
 Then(/^I see the list of tasks$/) do
