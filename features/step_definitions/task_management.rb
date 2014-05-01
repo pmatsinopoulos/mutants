@@ -38,9 +38,12 @@ When(/^I fill in the name "(.*?)"$/) do |task_name|
 end
 
 When(/^I click on the Save button$/) do
-  pending # express the regexp above with the code you wish you had
+  @create_new_task_page.save.click
 end
 
 Then(/^I get a confirmation that task has been created successfully$/) do
-  pending # express the regexp above with the code you wish you had
+  @edit_task_page = Mutants::Pages::EditTask.new
+  expect(@edit_task_page).to be_displayed
+
+  expect(@edit_task_page.flash).to eq("Task has been created successfully!")
 end

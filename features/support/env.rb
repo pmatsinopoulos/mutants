@@ -68,6 +68,7 @@ end
 
 require "task_list_item"
 require 'new_task'
+require 'edit_task'
 require "task_management"
 
 

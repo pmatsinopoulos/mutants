@@ -1,2 +1,3 @@
-%form#new_task_form
-  %input#task_name {type: 'text'}
+= form_for @task, url: tasks_path, html: {id: 'new_task_form'} do |f|
+  = f.text_field :name, id: 'task_name'
+  = f.submit id: 'save_task'
