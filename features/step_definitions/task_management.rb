@@ -91,6 +91,7 @@ And(/^I confirm the delete action$/) do
 end
 
 Then(/^the task "(.*?)" does not exist anymore$/) do |task_name|
+  sleep(1)
   expect(Mutants::Task.find_by_name(task_name)).to be_nil
 end
 
@@ -125,4 +126,13 @@ end
 Then(/^I am on the new task page$/) do
   new_task_page = Mutants::Pages::NewTask.new
   expect(new_task_page).to be_displayed
+end
+
+And(/^I click on the task list link$/) do
+  @edit_task_page.task_list.click
+end
+
+Then(/^I am on the task list page$/) do
+  @task_management_page = Mutants::Pages::TaskManagement.new
+  expect(@task_management_page).to be_displayed
 end

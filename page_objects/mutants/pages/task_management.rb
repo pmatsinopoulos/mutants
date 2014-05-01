@@ -3,6 +3,7 @@ module Mutants
 
     class TaskManagement < SitePrism::Page
       set_url "/tasks"
+      set_url_matcher /\/tasks\Z/
 
       element  :search_box,                                    '#search_box'
       element  :search_button,                                 '#search_button'

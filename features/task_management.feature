@@ -66,3 +66,12 @@ Feature: Task Management
     Given I visit tasks management page
      When I click on new task link
      Then I am on the new task page
+
+  Scenario: I can visit task list page from task edit page
+    Given A list of tasks
+      | Name             |
+      | Kill Aardwolf    |
+      | Help Tyger Tiger |
+     When I visit the page of the task "Help Tyger Tiger"
+      And I click on the task list link
+     Then I am on the task list page

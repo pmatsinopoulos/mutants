@@ -6,6 +6,7 @@ module Mutants
 
       element :task_name, '#task_form #task_name'
       element :update,    "#task_form input[type='submit']"
+      element :task_list, '#task_list'
     end
   end
 end
