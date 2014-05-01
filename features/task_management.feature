@@ -52,3 +52,12 @@ Feature: Task Management
       And I confirm the delete action
      Then the task "Kill Aardwolf" does not exist anymore
 
+  Scenario: Search for a task by name
+    Given A list of tasks
+      | Name             |
+      | Kill Aardwolf    |
+      | Help Tyger Tiger |
+     When I visit tasks management page
+      And I fill in the search box with "Aardwolf"
+      And I click on the search button
+     Then Task list displays all tasks that match "Aardwolf"

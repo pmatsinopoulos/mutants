@@ -94,14 +94,26 @@ Then(/^the task "(.*?)" does not exist anymore$/) do |task_name|
   expect(Mutants::Task.find_by_name(task_name)).to be_nil
 end
 
-And(/^I fill in the search box with "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+And(/^I fill in the search box with "(.*?)"$/) do |keyword|
+  @task_management_page = Mutants::Pages::TaskManagement.new
+  @task_management_page.search_box.set keyword
 end
 
 And(/^I click on the search button$/) do
-  pending # express the regexp above with the code you wish you had
+  @task_management_page.search_button.click
 end
 
-Then(/^Task list displays all tasks that match "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^Task list displays all tasks that match "(.*?)"$/) do |keyword|
+  @task_management_page.wait_for_task_list_items
+  expect(@task_management_page).to have_task_list_items
+  task_list = @task_management_page.task_list_items
+
+  tasks_matching = Mutants::Task.where("name like ?", "%#{keyword}%").order(:name).all.map{|t| {:name => t.name, :id => t.id}}
+
+  expect(task_list).to have(tasks_matching.count).elements
+  expect(task_list.first.name).to eq(tasks_matching.first[:name])
+  expect(task_list.last.name).to eq(tasks_matching.last[:name])
+
+  expect(task_list.first.id).to eq(tasks_matching.first[:id])
+  expect(task_list.last.id).to eq(tasks_matching.last[:id])
 end

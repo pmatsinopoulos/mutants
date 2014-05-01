@@ -1,0 +1,3 @@
+= form_tag tasks_path, method: :get, id: 'search_form' do
+  = search_field_tag :search_box, params[:q], name: 'q', id: 'search_box'
+  = submit_tag 'Search', id: 'search_button'
