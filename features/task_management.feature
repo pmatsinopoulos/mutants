@@ -61,3 +61,8 @@ Feature: Task Management
       And I fill in the search box with "Aardwolf"
       And I click on the search button
      Then Task list displays all tasks that match "Aardwolf"
+
+  Scenario: I can visit the new task page from task list page
+    Given I visit tasks management page
+     When I click on new task link
+     Then I am on the new task page

@@ -117,3 +117,12 @@ Then(/^Task list displays all tasks that match "(.*?)"$/) do |keyword|
   expect(task_list.first.id).to eq(tasks_matching.first[:id])
   expect(task_list.last.id).to eq(tasks_matching.last[:id])
 end
+
+When(/^I click on new task link$/) do
+  @task_management_page.new_task.click
+end
+
+Then(/^I am on the new task page$/) do
+  new_task_page = Mutants::Pages::NewTask.new
+  expect(new_task_page).to be_displayed
+end
