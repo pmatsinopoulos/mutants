@@ -34,6 +34,15 @@ module Mutants
       end
     end
 
+    def destroy
+      @task = Mutants::Task.find(params[:id])
+      if @task.destroy
+        redirect_to tasks_path, :success => 'Task has been successfully deleted!'
+      else
+        redirect_to tasks_path, :alert => 'Cannot delete task!'
+      end
+    end
+
     private
 
     def task_params

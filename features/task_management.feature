@@ -41,4 +41,14 @@ Feature: Task Management
      Then I get a confirmation message that the task has been updated
       And I see the task having the new name "Help Aardwolf"
 
+  @javascript
+  Scenario: Delete a task
+    Given A list of tasks
+      | Name             |
+      | Kill Aardwolf    |
+      | Help Tyger Tiger |
+     When I visit tasks management page
+      And I click to delete task "Kill Aardwolf"
+      And I confirm the delete action
+     Then the task "Kill Aardwolf" does not exist anymore
 

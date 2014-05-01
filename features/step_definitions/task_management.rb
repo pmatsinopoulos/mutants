@@ -24,8 +24,8 @@ Then(/^I see the list of tasks$/) do
   expect(task_list.first.name).to eq(@tasks.sort.first.name)
   expect(task_list.last.name).to eq(@tasks.sort.last.name)
 
-  expect(task_list.first.id.to_i).to eq(@tasks.sort.first.id)
-  expect(task_list.last.id.to_i).to eq(@tasks.sort.last.id)
+  expect(task_list.first.id).to eq(@tasks.sort.first.id)
+  expect(task_list.last.id).to eq(@tasks.sort.last.id)
 end
 
 When(/^I visit the create new task page$/) do
@@ -79,16 +79,19 @@ And(/^I see the task having the new name "(.*?)"$/) do |task_name|
   expect(@task.reload.name).to eq(task_name)
 end
 
-And(/^I click to delete task "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+And(/^I click to delete task "(.*?)"$/) do |task_name|
+  @task_management_page = Mutants::Pages::TaskManagement.new
+  @task = Mutants::Task.find_by_name(task_name)
+  task = @task_management_page.task_list_items.select {|tli| tli.id == @task.id}.first
+  task.delete.click
 end
 
 And(/^I confirm the delete action$/) do
-  pending # express the regexp above with the code you wish you had
+  accept_alert
 end
 
-Then(/^The task "(.*?)" does not exist anymore$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^the task "(.*?)" does not exist anymore$/) do |task_name|
+  expect(Mutants::Task.find_by_name(task_name)).to be_nil
 end
 
 And(/^I fill in the search box with "(.*?)"$/) do |arg1|
