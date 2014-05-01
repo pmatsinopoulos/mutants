@@ -26,3 +26,9 @@ Feature: Task Management
      And I click on the Save button
     Then I get an error message
 
+  Scenario: Try to create a new task without name should fail
+    When I visit the create new task page
+     And I click on the Save button
+    Then I get an error message
+
+
