@@ -66,5 +66,7 @@ Dir.glob(File.join(page_objects_path, '**', '*')).select {|entry| File.directory
   $LOAD_PATH.unshift(d) unless $LOAD_PATH.include?(d)
 end
 
+require "task_list_item"
 require "task_management"
+
 

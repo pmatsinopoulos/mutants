@@ -16,5 +16,14 @@ When(/^I visit tasks management page$/) do
 end
 
 Then(/^I see the list of tasks$/) do
-  pending # express the regexp above with the code you wish you had
+  @task_management_page.wait_for_task_list_items
+  expect(@task_management_page).to have_task_list_items
+  task_list = @task_management_page.task_list_items
+
+  expect(task_list).to have(@tasks.count).elements
+  expect(task_list.first.name).to eq(@tasks.sort.first.name)
+  expect(task_list.last.name).to eq(@tasks.sort.last.name)
+
+  expect(task_list.first.id.to_i).to eq(@tasks.sort.first.id)
+  expect(task_list.last.id.to_i).to eq(@tasks.sort.last.id)
 end

@@ -1,0 +1,11 @@
+- unless @tasks.blank?
+  %table#task_list
+    %thead
+      %tr
+        %th ID
+        %th Name
+    %tbody
+      - @tasks.each do |t|
+        %tr
+          %td= t.id
+          %td= t.name
