@@ -3,5 +3,8 @@ module Mutants
     def index
       @tasks = Task.order(:id).all
     end
+
+    def new
+    end
   end
 end

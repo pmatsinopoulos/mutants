@@ -67,6 +67,7 @@ Dir.glob(File.join(page_objects_path, '**', '*')).select {|entry| File.directory
 end
 
 require "task_list_item"
+require 'new_task'
 require "task_management"
 
 

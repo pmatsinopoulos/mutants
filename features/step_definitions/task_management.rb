@@ -27,3 +27,20 @@ Then(/^I see the list of tasks$/) do
   expect(task_list.first.id.to_i).to eq(@tasks.sort.first.id)
   expect(task_list.last.id.to_i).to eq(@tasks.sort.last.id)
 end
+
+When(/^I visit the create new task page$/) do
+  @create_new_task_page = Mutants::Pages::NewTask.new
+  @create_new_task_page.load
+end
+
+When(/^I fill in the name "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I click on the Save button$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I get a confirmation that task has been created successfully$/) do
+  pending # express the regexp above with the code you wish you had
+end
