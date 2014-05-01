@@ -29,16 +29,16 @@ Then(/^I see the list of tasks$/) do
 end
 
 When(/^I visit the create new task page$/) do
-  @create_new_task_page = Mutants::Pages::NewTask.new
-  @create_new_task_page.load
+  @edit_task_page = Mutants::Pages::NewTask.new
+  @edit_task_page.load
 end
 
 When(/^I fill in the name "(.*?)"$/) do |task_name|
-  @create_new_task_page.task_name.set task_name
+  @edit_task_page.task_name.set task_name
 end
 
 When(/^I click on the Save button$/) do
-  @create_new_task_page.save.click
+  @edit_task_page.save.click
 end
 
 Then(/^I get a confirmation that task has been created successfully$/) do

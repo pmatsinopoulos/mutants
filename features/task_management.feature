@@ -75,3 +75,8 @@ Feature: Task Management
      When I visit the page of the task "Help Tyger Tiger"
       And I click on the task list link
      Then I am on the task list page
+
+  Scenario: I can visit task list page from new task page
+    When I visit the create new task page
+    And I click on the task list link
+    Then I am on the task list page
