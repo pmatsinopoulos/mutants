@@ -54,3 +54,51 @@ Then(/^I get an error message$/) do
 
   expect(@new_task_page.flash).to eq("Cannot create task!")
 end
+
+When(/^I visit the page of the task "(.*?)"$/) do |task_name|
+  @task = Mutants::Task.find_by_name!(task_name)
+  @edit_task_page = Mutants::Pages::EditTask.new
+  @edit_task_page.load(id: @task.id)
+end
+
+And(/^I change the name to "(.*?)"$/) do |task_name|
+  @edit_task_page.task_name.set task_name
+end
+
+And(/^I click on Update button$/) do
+  @edit_task_page.update.click
+end
+
+Then(/^I get a confirmation message that the task has been updated$/) do
+  expect(@edit_task_page).to be_displayed
+
+  expect(@edit_task_page.flash).to eq("Task has been successfully updated!")
+end
+
+And(/^I see the task having the new name "(.*?)"$/) do |task_name|
+  expect(@task.reload.name).to eq(task_name)
+end
+
+And(/^I click to delete task "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+And(/^I confirm the delete action$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^The task "(.*?)" does not exist anymore$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+And(/^I fill in the search box with "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+And(/^I click on the search button$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^Task list displays all tasks that match "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end

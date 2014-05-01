@@ -20,7 +20,18 @@ module Mutants
     end
 
     def edit
+      @task = Mutants::Task.find(params[:id])
+    end
 
+    def update
+      @task = Mutants::Task.find(params[:id])
+      if @task.update_attributes task_params
+        flash[:notice] = "Task has been successfully updated!"
+        redirect_to edit_task_path(@task)
+      else
+        flash.now[:alert] = "Cannot update task!"
+        render :edit
+      end
     end
 
     private

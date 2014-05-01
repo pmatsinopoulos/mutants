@@ -31,4 +31,14 @@ Feature: Task Management
      And I click on the Save button
     Then I get an error message
 
+  Scenario: Open the edit page of an existing task to edit it.
+    Given A list of tasks
+      | Name |
+      | Kill Aardwolf |
+     When I visit the page of the task "Kill Aardwolf"
+      And I change the name to "Help Aardwolf"
+      And I click on Update button
+     Then I get a confirmation message that the task has been updated
+      And I see the task having the new name "Help Aardwolf"
+
 
