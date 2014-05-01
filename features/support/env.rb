@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'capybara/cucumber'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -54,5 +55,35 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation
+Cucumber::Rails::Database.javascript_strategy = :transaction
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || ConnectionPool::Wrapper.new(:size => 1) { retrieve_connection }
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
+require 'factory_girl_rails'
+
+include FactoryGirl::Syntax::Methods
+
+page_objects_path = File.join(Rails.root, 'page_objects')
+
+Dir.glob(File.join(page_objects_path, '**', '*')).select {|entry| File.directory?(entry) }.each do |d|
+  $LOAD_PATH.unshift(d) unless $LOAD_PATH.include?(d)
+end
+
+require 'task_list_item'
+require 'application_page'
+require 'new_task'
+require 'edit_task'
+require "task_management"
+
 

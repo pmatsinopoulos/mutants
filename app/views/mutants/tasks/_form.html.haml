@@ -1,0 +1,5 @@
+= form_for @task, url: @task.new_record? ? tasks_path : task_path(@task), html: {id: 'task_form'} do |f|
+  = f.text_field :name, id: 'task_name'
+  = f.submit id: 'save_task'
+
+= link_to 'Tasks', tasks_path, id: 'task_list'
