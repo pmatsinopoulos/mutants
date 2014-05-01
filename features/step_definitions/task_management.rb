@@ -33,8 +33,8 @@ When(/^I visit the create new task page$/) do
   @create_new_task_page.load
 end
 
-When(/^I fill in the name "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I fill in the name "(.*?)"$/) do |task_name|
+  @create_new_task_page.task_name.set task_name
 end
 
 When(/^I click on the Save button$/) do
