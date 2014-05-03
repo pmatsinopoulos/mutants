@@ -1,4 +1,4 @@
-= form_for @task, url: @task.new_record? ? tasks_path : task_path(@task), html: {id: 'task_form'} do |f|
+= form_for @task, url: @task.persisted? ? task_path(@task) : tasks_path, html: {id: 'task_form'} do |f|
   = f.text_field :name, id: 'task_name'
   = f.submit id: 'save_task'
 

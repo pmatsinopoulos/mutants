@@ -11,14 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501080900) do
+ActiveRecord::Schema.define(version: 20140503062619) do
 
-  create_table "tasks", force: true do |t|
+  create_table "groups", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "groups", ["name"], name: "groups_name_uidx", unique: true, using: :btree
+
+  create_table "mutants", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+  end
+
+  add_index "mutants", ["group_id"], name: "tasks_mutant_fk", using: :btree
+  add_index "mutants", ["name"], name: "mutants_name_uidx", unique: true, using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+  end
+
+  add_index "tasks", ["group_id"], name: "tasks_group_fk", using: :btree
   add_index "tasks", ["name"], name: "tasks_name_uidx", unique: true, using: :btree
+
+  add_foreign_key "mutants", "groups", name: "tasks_mutant_fk"
+
+  add_foreign_key "tasks", "groups", name: "tasks_group_fk"
 
 end

@@ -49,7 +49,7 @@ module Mutants
     private
 
     def task_params
-      params[:mutants_task].permit(:name)
+      params.require(:mutants_task).permit(:name)
     end
   end
 end

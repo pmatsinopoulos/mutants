@@ -84,6 +84,11 @@ require 'task_list_item'
 require 'application_page'
 require 'new_task'
 require 'edit_task'
+require 'group_form'
+require 'new_group'
+require 'edit_group'
+require 'group_list_item'
+require 'group_management'
 require "task_management"
 
 
