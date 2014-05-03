@@ -12,6 +12,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+require 'factory_girl_rails'
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -39,4 +41,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include FactoryGirl::Syntax::Methods
 end
