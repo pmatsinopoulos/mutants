@@ -31,6 +31,15 @@ module Mutants
     def index
       @groups = Mutants::Group.order(:name)
     end
+    
+    def destroy
+      @group = Mutants::Group.find(params[:id])
+      if @group.destroy
+        redirect_to groups_path, :notice => 'Group has been successfully deleted!'
+      else
+        redirect_to groups_path, :alert => 'Cannot delete Group!'
+      end
+    end
 
     private
 

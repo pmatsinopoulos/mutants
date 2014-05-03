@@ -203,3 +203,18 @@ Then(/^I am on the create new Group page$/) do
   @page = Mutants::Pages::NewGroup.new
   expect(@page).to be_displayed
 end
+
+And(/^I click on the delete link for the Group "(.*?)"$/) do |group_name|
+  @page = Mutants::Pages::GroupManagement.new
+  @group = Mutants::Group.find_by_name(group_name)
+  group = @page.group_list_items.select {|gli| gli.id == @group.id}.first
+  group.delete.click
+end
+
+Then(/^I get a confirmation message that the Group has been deleted$/) do
+  expect(@page.flash).to eq('Group has been successfully deleted!')
+end
+
+And(/^"(.*?)" does not exist anymore$/) do |group_name|
+  expect(Mutants::Group.where(:name => group_name).count).to be_zero
+end

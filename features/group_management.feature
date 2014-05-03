@@ -104,9 +104,11 @@ Feature: Group Management
      And I click on create new Group link
     Then I am on the create new Group page
 
+  @javascript
   Scenario: I visit the Groups Management page and I can delete a Group
-
-  Scenario: When I edit a Group I do not see the Tasks that are already assigned to another Group
-
-  Scenario: When I edit a Group I do not see the Mutants that are already assigned to another Group
+    When I visit groups management page
+     And I click on the delete link for the Group "Task Force 2"
+     And I confirm the delete action
+    Then I get a confirmation message that the Group has been deleted
+     And "Task Force 2" does not exist anymore
 

@@ -1,7 +1,7 @@
 module Mutants
   module Pages
 
-    class GroupManagement < SitePrism::Page
+    class GroupManagement < Mutants::Pages::ApplicationPage
       set_url "/groups"
       set_url_matcher /\/groups\Z/
 
