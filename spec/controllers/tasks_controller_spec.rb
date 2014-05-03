@@ -124,4 +124,31 @@ describe Mutants::TasksController do
     end
   end
 
+  describe '#destroy' do
+    context 'when it succeeds' do
+      it 'destroys the task with id given and redirects to task list page' do
+        task = create :task
+
+        expect do
+          delete :destroy, id: task.to_param
+        end.to change { Mutants::Task.count }.by(-1)
+
+        expect(response).to redirect_to(tasks_path)
+        expect(flash[:notice]).to eq('Task has been successfully deleted!')
+      end
+    end
+
+    context 'when it fails' do
+      before { allow_any_instance_of(Mutants::Task).to receive(:destroy).and_return(false) }
+      it 'redirects to tasks list page' do
+        task = create :task
+        expect do
+          delete :destroy, id: task.to_param
+        end.to_not change { Mutants::Task.count }
+
+        expect(response).to redirect_to(tasks_path)
+      end
+    end
+  end
+
 end
