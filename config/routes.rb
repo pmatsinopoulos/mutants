@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   scope module: 'mutants' do
     resources :tasks
+    resources :groups
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

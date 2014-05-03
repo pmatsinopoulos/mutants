@@ -1,0 +1,5 @@
+= form_for @group, url: groups_path do |f|
+  = f.text_field :name, id: 'name'
+  = f.select     :mutants, @group.mutants_to_select_from, {}, {id: 'mutants', multiple: 'multiple'}
+  = f.select     :tasks,   @group.tasks_to_select_from,   {}, {id: 'tasks',   multiple: 'multiple'}
+  = f.button     "Create", id: 'create_button'
