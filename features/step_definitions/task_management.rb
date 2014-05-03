@@ -138,3 +138,9 @@ Then(/^I see the edit page of the task with name "(.*?)"$/) do |task_name|
   expect(edit_page).to be_displayed
   expect(edit_page.task_name.value).to eq(task_name)
 end
+
+Then(/^For each Task I see the number of Mutants inside$/) do
+  @tasks.sort {|a,b| a.name <=> b.name}.each_with_index do |task, index|
+    expect(@task_management_page.task_list_items[index].number_of_mutants).to eq(task.mutants.count)
+  end
+end

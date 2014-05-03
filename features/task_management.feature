@@ -69,3 +69,7 @@ Feature: Task Management
     When I visit tasks management page
      And I click on task with name "Help Tyger Tiger"
     Then I see the edit page of the task with name "Help Tyger Tiger"
+
+  Scenario: When I visit the Task management page, I see the number of Mutants assigned to each Task
+    When I visit tasks management page
+    Then For each Task I see the number of Mutants inside
