@@ -2,7 +2,7 @@ module Mutants
   class TasksController < ApplicationController
     def index
       q = params[:q]
-      query = Mutants::Task.order(:id)
+      query = Mutants::Task.order(:name)
       query = query.where("name like ?", "%#{params[:q]}%") if q.present?
       @tasks = query
     end

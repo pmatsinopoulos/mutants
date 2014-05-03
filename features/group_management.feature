@@ -11,6 +11,7 @@ Feature: Group Management
       | Destroy Mammomax  |
       | Attack Warlock    |
       | Save Starbolt     |
+      | Save Selene       |
     And A list of Mutants
       | Name     |
       | Hellion  |
@@ -22,6 +23,7 @@ Feature: Group Management
       | Name         | Mutants         | Tasks                              |
       | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
       | Task Force 2 | Selene,  Magus  | Attack Warlock, Save Starbolt      |
+      | Super Powers | Starbolt        | Save Selene                        |
 
   Scenario: Create a new Group of Mutants and Assign Tasks to Them
     When I visit the page to create a new Group

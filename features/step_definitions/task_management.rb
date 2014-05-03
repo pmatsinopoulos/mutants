@@ -9,11 +9,7 @@ Then(/^I see the list of tasks$/) do
   task_list = @page.task_list_items
 
   expect(task_list).to have(@tasks.count).elements
-  expect(task_list.first.name).to eq(@tasks.sort.first.name)
-  expect(task_list.last.name).to eq(@tasks.sort.last.name)
-
-  expect(task_list.first.id).to eq(@tasks.sort.first.id)
-  expect(task_list.last.id).to eq(@tasks.sort.last.id)
+  expect(task_list.map{|t| t.name}.sort).to eq(@tasks.map{|t| t.name}.sort)
 end
 
 When(/^I visit the create new task page$/) do

@@ -74,4 +74,54 @@ describe Mutants::GroupsController do
       end
     end
   end
+
+  describe '#index' do
+    context 'given a list of groups' do
+      let(:groups) do
+        [create(:group), create(:group)]
+      end
+      let(:groups_matching) { groups.select {|t| t.name.include?(query_string)} }
+
+      context 'when querying with part of the name of one of the groups' do
+        let(:query_string) { groups.last.name[1, 3] }
+        it 'brings the group whose name includes the query string' do
+          get :index, :q => query_string
+
+          assigned_groups = assigns(:groups).to_a
+          expect(assigned_groups).to be_present
+
+          expect(assigned_groups.size).to eq(groups_matching.size)
+          expect(assigned_groups.map{|g| g.name}.sort).to eq(groups_matching.map{|g| g.name}.sort)
+        end
+      end
+
+      context 'when querying with string that does not match any group' do
+        let(:query_string) { SecureRandom.hex }
+        it 'brings an empty group list' do
+
+          get :index, :q => query_string
+
+          assigned_groups = assigns(:groups).to_a
+          expect(assigned_groups).to be_blank
+
+          expect(assigned_groups.size).to eq(groups_matching.size)
+          expect(assigned_groups.map{|g| g.name}.sort).to eq(groups_matching.map{|g| g.name}.sort)
+        end
+      end
+
+      context 'when querying without any string' do
+        before { groups }
+        let(:groups_matching) { groups }
+        it 'brings all the groups' do
+          get :index
+
+          assigned_groups = assigns(:groups).to_a
+          expect(assigned_groups).to be_present
+
+          expect(assigned_groups.size).to eq(groups_matching.size)
+          expect(assigned_groups.map{|g| g.name}.sort).to eq(groups_matching.map{|g| g.name}.sort)
+        end
+      end
+    end
+  end
 end

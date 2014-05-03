@@ -29,7 +29,10 @@ module Mutants
     end
 
     def index
-      @groups = Mutants::Group.order(:name)
+      q = params[:q]
+      query = Mutants::Group.order(:name)
+      query = query.where("name like ?", "%#{params[:q]}%") if q.present?
+      @groups = query
     end
     
     def destroy
