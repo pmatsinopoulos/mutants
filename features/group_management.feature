@@ -11,11 +11,12 @@ Feature: Group Management
       | Destroy Mammomax  |
       | Attack Warlock    |
     And A list of Mutants
-      | Name    |
-      | Hellion |
-      | Selene  |
-      | Trance  |
-      | Magus   |
+      | Name     |
+      | Hellion  |
+      | Selene   |
+      | Trance   |
+      | Magus    |
+      | Starbolt |
     And A list of groups
       | Name         | Mutants         | Tasks                              |
       | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
@@ -67,6 +68,14 @@ Feature: Group Management
     Then "Task Force 2" remains only with Mutant "Magus"
 
   Scenario: I visit the edit page of a Group and I can add a Mutant
+    When I visit the edit page of the Group "Task Force 2"
+     And I add the Mutant "Starbolt"
+     And I click the button update
+    Then "Task Force 2" has the mutants
+      | Name     |
+      | Selene   |
+      | Magus    |
+      | Starbolt |
 
   Scenario: I visit the edit page of a Group and I can remove a Task
 
