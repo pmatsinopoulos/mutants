@@ -185,3 +185,12 @@ Then(/^"(.*?)" has the Tasks$/) do |group_name, table|
   data.shift # remove header
   expect(group.tasks.map{|t| t.name}.sort).to eq(data.map{|d| d[0].strip}.sort)
 end
+
+And(/^I click on Groups link$/) do
+  @page.groups.click
+end
+
+Then(/^I am on the Groups management page$/) do
+  @page = Mutants::Pages::GroupManagement.new
+  expect(@page).to be_displayed
+end

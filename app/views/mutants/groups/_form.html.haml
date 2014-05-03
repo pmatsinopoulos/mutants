@@ -3,3 +3,5 @@
   = f.collection_select  :mutant_ids, Mutants::Mutant.order(:name), :id, :name, {include_blank: true}, {id: 'mutants', multiple: 'multiple'}
   = f.collection_select  :task_ids,   Mutants::Task.order(:name), :id, :name,   {include_blank: true}, {id: 'tasks',   multiple: 'multiple'}
   = f.submit id: 'save_group'
+
+= link_to 'Groups', groups_path

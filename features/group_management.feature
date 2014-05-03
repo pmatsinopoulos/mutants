@@ -95,6 +95,9 @@ Feature: Group Management
       | Save Starbolt    |
 
   Scenario: I visit the edit page of a Group and I can go to list of Groups
+    When I visit the edit page of the Group "Task Force 2"
+     And I click on Groups link
+    Then I am on the Groups management page
 
   Scenario: I visit the Groups Management page and I can go to creation of new Group
 
