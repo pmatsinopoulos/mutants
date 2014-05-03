@@ -4,7 +4,7 @@ And(/^A list of Mutants$/) do |table|
   i = 1
   mutants = []
   while i < data.size
-    mutants << create(:mutant, name: data[i][0])
+    mutants << create(:mutant, name: data[i][0].strip)
     i += 1
   end
   expect(mutants.count).to eq(data.size - 1)

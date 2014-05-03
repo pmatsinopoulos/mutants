@@ -3,17 +3,25 @@ Feature: Group Management
   I want to be able to build up a Group of Mutants
   and assign Tasks to them.
 
-  Scenario: Create a new Group of Mutants and Assign Tasks to Them
+  Background:
     Given A list of tasks
       | Name              |
       | Kill Aardwolf     |
       | Help Tyger Tiger  |
       | Destroy Mammomax  |
+      | Attack Warlock    |
     And A list of Mutants
       | Name    |
       | Hellion |
       | Selene  |
       | Trance  |
+      | Magus   |
+    And A list of groups
+      | Name         | Mutants         | Tasks                              |
+      | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
+      | Task Force 2 | Selene,  Magus  | Attack Warlock                     |
+
+  Scenario: Create a new Group of Mutants and Assign Tasks to Them
     When I visit the page to create a new Group
      And I fill in the name of the Group with "Super G-I"
      And I add the following Mutants to the Group
@@ -36,21 +44,6 @@ Feature: Group Management
        | Destroy Mammomax  |
 
   Scenario: When I visit the list of Groups I see the existing Groups and the Number of Mutants and Tasks Assigned
-    Given A list of Mutants
-      | Name       |
-      | Hellion    |
-      | Selene     |
-      | Trance     |
-      | Magus      |
-    And A list of tasks
-      | Name              |
-      | Help Tyger Tiger  |
-      | Destroy Mammomax  |
-      | Attack Warlock    |
-    And A list of groups
-      | Name         | Mutants         | Tasks                              |
-      | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
-      | Task Force 2 | Selene,  Magus  | Attack Warlock                     |
     When I visit groups management page
     Then I see the list of groups
      And For each group I see the number of Mutants inside
