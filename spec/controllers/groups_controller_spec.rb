@@ -50,4 +50,28 @@ describe Mutants::GroupsController do
       expect(assigns(:group).id).to eq(group.id)
     end
   end
+
+  describe '#update' do
+    let(:group) { create :group }
+    let(:params) { {name: new_name} }
+    context 'when update params are ok' do
+      let(:new_name) { SecureRandom.hex }
+      it 'can update the name of a group' do
+        put :update, id: group.to_param, mutants_group: params
+
+        expect(response).to redirect_to(edit_group_path(group))
+        expect(group.reload.name).to eq(new_name)
+      end
+    end
+
+    context 'when update params are not ok' do
+      let(:new_name) { nil }
+      it 'fails to update and renders edit' do
+        put :update, id: group.to_param, mutants_group: params
+
+        expect(response.status).to eq(422)
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

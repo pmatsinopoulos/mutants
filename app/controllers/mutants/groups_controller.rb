@@ -24,7 +24,7 @@ module Mutants
         redirect_to edit_group_path(@group), :notice => 'Group has been successfully updated'
       else
         flash.now[:alert] = 'Cannot update Group'
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
