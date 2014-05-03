@@ -61,6 +61,10 @@ Feature: Group Management
     Then The name of the group has changed to "Task Force 3"
 
   Scenario: I visit the edit page of a Group and I can remove a Mutant
+    When I visit the edit page of the Group "Task Force 2"
+     And I remove the Mutant "Selene"
+     And I click the button update
+    Then "Task Force 2" remains only with "Magus"
 
   Scenario: I visit the edit page of a Group and I can add a Mutant
 
