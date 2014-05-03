@@ -53,3 +53,28 @@ Feature: Group Management
     When I visit groups management page
      And I click on the name of the Group "Task Force 2"
     Then I can see the edit page of this Group
+
+  Scenario: I visit the edit page of a Group and I can change its name
+    When I visit the edit page of the Group "Task Force 2"
+     And I change its name to "Task Force 3"
+     And I click the button update
+    Then The name of the group has changed to "Task Force 3"
+
+  Scenario: I visit the edit page of a Group and I can remove a Mutant
+
+  Scenario: I visit the edit page of a Group and I can add a Mutant
+
+  Scenario: I visit the edit page of a Group and I can remove a Task
+
+  Scenario: I visit the edit page of a Group and I can add a Task
+
+  Scenario: I visit the edit page of a Group and I can go to list of Groups
+
+  Scenario: I visit the Groups Management page and I can go to creation of new Group
+
+  Scenario: I visit the Groups Management page and I can delete a Group
+
+  Scenario: When I edit a Group I do not see the Tasks that are already assigned to another Group
+
+  Scenario: When I edit a Group I do not see the Mutants that are already assigned to another Group
+

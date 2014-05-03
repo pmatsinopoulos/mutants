@@ -1,2 +1,5 @@
-= form_for @group, url: group_path(@group) do |f|
+= form_for @group, url: @group.persisted? ? group_path(@group) : groups_path  do |f|
   = f.text_field :name, id: 'name'
+  = f.collection_select  :mutant_ids, Mutants::Mutant.order(:name), :id, :name, {include_blank: true}, {id: 'mutants', multiple: 'multiple'}
+  = f.collection_select  :task_ids,   Mutants::Task.order(:name), :id, :name,   {include_blank: true}, {id: 'tasks',   multiple: 'multiple'}
+  = f.submit id: 'save_group'

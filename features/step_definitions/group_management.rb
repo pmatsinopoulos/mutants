@@ -125,3 +125,21 @@ Then(/^I can see the edit page of this Group$/) do
   expect(@page).to be_displayed
   expect(@page.name.value).to eq(@group_name)
 end
+
+When(/^I visit the edit page of the Group "(.*?)"$/) do |group_name|
+  @page = Mutants::Pages::EditGroup.new
+  @group = Mutants::Group.find_by_name!(group_name)
+  @page.load id: @group.id
+end
+
+And(/^I change its name to "(.*?)"$/) do |new_name|
+  @page.name.set new_name
+end
+
+And(/^I click the button update$/) do
+  @page.update.click
+end
+
+Then(/^The name of the group has changed to "(.*?)"$/) do |group_name|
+  expect(Mutants::Group.find_by_name!(group_name).id).to eq(@group.id)
+end

@@ -7,7 +7,7 @@ module Mutants
       element :name,          '#name'
       element :mutants,       '#mutants'
       element :tasks,         '#tasks'
-      element :create_button, '#create_button'
+      element :create_button, "input[type='submit']"
     end
   end
 end
