@@ -112,3 +112,10 @@ Feature: Group Management
     Then I get a confirmation message that the Group has been deleted
      And "Task Force 2" does not exist anymore
 
+  Scenario: Search for a Group by name
+    When I visit groups management page
+     And I fill in the Groups search box with "Force"
+     And I click on the search button
+    Then Group list displays all groups that match "Force"
+
+

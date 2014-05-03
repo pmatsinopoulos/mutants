@@ -1,12 +1,12 @@
 When(/^I visit tasks management page$/) do
-  @task_management_page = Mutants::Pages::TaskManagement.new
-  @task_management_page.load
+  @page = Mutants::Pages::TaskManagement.new
+  @page.load
 end
 
 Then(/^I see the list of tasks$/) do
-  @task_management_page.wait_for_task_list_items
-  expect(@task_management_page).to have_task_list_items
-  task_list = @task_management_page.task_list_items
+  @page.wait_for_task_list_items
+  expect(@page).to have_task_list_items
+  task_list = @page.task_list_items
 
   expect(task_list).to have(@tasks.count).elements
   expect(task_list.first.name).to eq(@tasks.sort.first.name)
@@ -88,10 +88,6 @@ And(/^I fill in the search box with "(.*?)"$/) do |keyword|
   @task_management_page.search_box.set keyword
 end
 
-And(/^I click on the search button$/) do
-  @task_management_page.search_button.click
-end
-
 Then(/^Task list displays all tasks that match "(.*?)"$/) do |keyword|
   @task_management_page.wait_for_task_list_items
   expect(@task_management_page).to have_task_list_items
@@ -108,7 +104,7 @@ Then(/^Task list displays all tasks that match "(.*?)"$/) do |keyword|
 end
 
 When(/^I click on new task link$/) do
-  @task_management_page.new_task.click
+  @page.new_task.click
 end
 
 Then(/^I am on the new task page$/) do
@@ -127,7 +123,7 @@ end
 
 And(/^I click on task with name "(.*?)"$/) do |task_name|
   task = Mutants::Task.find_by_name! task_name
-  @task_list = @task_management_page.task_list_items
+  @task_list = @page.task_list_items
   task_list_item = @task_list.select {|t| t.id == task.id}.first
   task_list_item.edit_page.click
 end
@@ -141,6 +137,6 @@ end
 
 Then(/^For each Task I see the number of Mutants inside$/) do
   @tasks.sort {|a,b| a.name <=> b.name}.each_with_index do |task, index|
-    expect(@task_management_page.task_list_items[index].number_of_mutants).to eq(task.mutants.count)
+    expect(@page.task_list_items[index].number_of_mutants).to eq(task.mutants.count)
   end
 end
