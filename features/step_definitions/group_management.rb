@@ -174,3 +174,14 @@ Then(/^"(.*?)" remains only with Task "(.*?)"$/) do |group_name, task_name|
   expect(group.tasks.count).to eq(1)
   expect(group.tasks.first.name).to eq(task_name)
 end
+
+And(/^I add the Task "(.*?)"$/) do |task_name|
+  @page.tasks.select task_name
+end
+
+Then(/^"(.*?)" has the Tasks$/) do |group_name, table|
+  group = Mutants::Group.find_by_name! group_name
+  data = table.raw
+  data.shift # remove header
+  expect(group.tasks.map{|t| t.name}.sort).to eq(data.map{|d| d[0].strip}.sort)
+end

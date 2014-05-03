@@ -85,6 +85,14 @@ Feature: Group Management
     Then "Task Force 2" remains only with Task "Save Starbolt"
 
   Scenario: I visit the edit page of a Group and I can add a Task
+    When I visit the edit page of the Group "Task Force 2"
+     And I add the Task "Destroy Mammomax"
+     And I click the button update
+    Then "Task Force 2" has the Tasks
+      | Name             |
+      | Destroy Mammomax |
+      | Attack Warlock   |
+      | Save Starbolt    |
 
   Scenario: I visit the edit page of a Group and I can go to list of Groups
 
