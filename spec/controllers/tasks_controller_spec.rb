@@ -100,4 +100,28 @@ describe Mutants::TasksController do
     end
   end
 
+  describe '#update' do
+    let(:task) { create :task }
+    let(:params) { {name: new_name} }
+    context 'when update params are ok' do
+      let(:new_name) { SecureRandom.hex }
+      it 'can update the name of a task' do
+        put :update, id: task.to_param, mutants_task: params
+
+        expect(response).to redirect_to(edit_task_path(task))
+        expect(task.reload.name).to eq(new_name)
+      end
+    end
+
+    context 'when update params are not ok' do
+      let(:new_name) { nil }
+      it 'fails to update and renders edit' do
+        put :update, id: task.to_param, mutants_task: params
+
+        expect(response.status).to eq(422)
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
 end

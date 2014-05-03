@@ -18,7 +18,7 @@ module Mutants
         redirect_to edit_task_path(@task)
       else
         flash.now[:alert] = "Cannot create task!"
-        render :new, :status => :unprocessable_entity
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -33,16 +33,16 @@ module Mutants
         redirect_to edit_task_path(@task)
       else
         flash.now[:alert] = "Cannot update task!"
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @task = Mutants::Task.find(params[:id])
       if @task.destroy
-        redirect_to tasks_path, :success => 'Task has been successfully deleted!'
+        redirect_to tasks_path, success: 'Task has been successfully deleted!'
       else
-        redirect_to tasks_path, :alert => 'Cannot delete task!'
+        redirect_to tasks_path, alert: 'Cannot delete task!'
       end
     end
 
