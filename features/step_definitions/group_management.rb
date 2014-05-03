@@ -54,7 +54,7 @@ end
 Then(/^I see a message that group has been created successfully$/) do
   @page = Mutants::Pages::EditGroup.new
   expect(@page).to be_displayed
-  expect(@page.flash).to eq("Group has been created successfully")
+  expect(@page.flash).to eq("Group has been created successfully!")
   @group = Mutants::Group.last
 end
 

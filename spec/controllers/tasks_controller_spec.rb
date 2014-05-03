@@ -76,7 +76,7 @@ describe Mutants::TasksController do
 
     context 'when params do not allow the task to be saved' do
       let(:params) { {name: nil} }
-      it 'creates a task successfully and redirects to edit path' do
+      it 'does not create the group and renders new' do
         expect do
           post :create, :mutants_task => params
         end.to_not change { Mutants::Task.count }
@@ -86,6 +86,7 @@ describe Mutants::TasksController do
         assigned_task = assigns(:task)
         expect(assigned_task).to be_a(Mutants::Task)
         expect(assigned_task).to be_a_new_record
+        expect(response).to render_template(:new)
       end
     end
   end

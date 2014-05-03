@@ -7,10 +7,10 @@ module Mutants
     def create
       @group = Mutants::Group.new(group_params)
       if @group.save
-        redirect_to edit_group_path(@group), :notice => 'Group has been created successfully'
+        redirect_to edit_group_path(@group), notice: 'Group has been created successfully!'
       else
         flash.now[:alert] = 'Group cannot be created'
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
