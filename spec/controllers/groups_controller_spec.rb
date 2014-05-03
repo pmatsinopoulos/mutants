@@ -124,4 +124,31 @@ describe Mutants::GroupsController do
       end
     end
   end
+
+  describe '#destroy' do
+    context 'when it succeeds' do
+      it 'destroys the group with id given and redirects to group list page' do
+        group = create :group
+
+        expect do
+          delete :destroy, id: group.to_param
+        end.to change { Mutants::Group.count }.by(-1)
+
+        expect(response).to redirect_to(groups_path)
+        expect(flash[:notice]).to eq('Group has been successfully deleted!')
+      end
+    end
+
+    context 'when it fails' do
+      before { allow_any_instance_of(Mutants::Group).to receive(:destroy).and_return(false) }
+      it 'redirects to groups list page' do
+        group = create :group
+        expect do
+          delete :destroy, id: group.to_param
+        end.to_not change { Mutants::Group.count }
+
+        expect(response).to redirect_to(groups_path)
+      end
+    end
+  end
 end
