@@ -148,7 +148,7 @@ And(/^I remove the Mutant "(.*?)"$/) do |mutant_name|
   @page.mutants.unselect mutant_name
 end
 
-Then(/^"(.*?)" remains only with "(.*?)"$/) do |group_name, mutant_name|
+Then(/^"(.*?)" remains only with Mutant "(.*?)"$/) do |group_name, mutant_name|
   group = Mutants::Group.find_by_name!(group_name)
   expect(group.mutants.count).to eq(1)
   expect(group.mutants.first.name).to eq(mutant_name)

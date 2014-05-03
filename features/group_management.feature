@@ -64,7 +64,7 @@ Feature: Group Management
     When I visit the edit page of the Group "Task Force 2"
      And I remove the Mutant "Selene"
      And I click the button update
-    Then "Task Force 2" remains only with "Magus"
+    Then "Task Force 2" remains only with Mutant "Magus"
 
   Scenario: I visit the edit page of a Group and I can add a Mutant
 
