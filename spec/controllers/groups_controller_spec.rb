@@ -40,4 +40,14 @@ describe Mutants::GroupsController do
       end
     end
   end
+
+  describe '#edit' do
+    let(:group) { create :group }
+    it 'instantiates a group based on the id in the params' do
+      get :edit, :id => group.to_param
+
+      expect(response.status).to eq(200)
+      expect(assigns(:group).id).to eq(group.id)
+    end
+  end
 end
