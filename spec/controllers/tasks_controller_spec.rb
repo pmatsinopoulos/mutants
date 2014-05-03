@@ -50,4 +50,14 @@ describe Mutants::TasksController do
       end
     end
   end
+
+  describe '#new' do
+    it 'instantiates a task empty object' do
+      get :new
+
+      expect(assigns(:task)).to be_a(Mutants::Task)
+      expect(assigns(:task)).to be_new_record
+    end
+  end
+
 end
