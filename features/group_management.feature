@@ -10,6 +10,7 @@ Feature: Group Management
       | Help Tyger Tiger  |
       | Destroy Mammomax  |
       | Attack Warlock    |
+      | Save Starbolt     |
     And A list of Mutants
       | Name     |
       | Hellion  |
@@ -20,7 +21,7 @@ Feature: Group Management
     And A list of groups
       | Name         | Mutants         | Tasks                              |
       | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
-      | Task Force 2 | Selene,  Magus  | Attack Warlock                     |
+      | Task Force 2 | Selene,  Magus  | Attack Warlock, Save Starbolt      |
 
   Scenario: Create a new Group of Mutants and Assign Tasks to Them
     When I visit the page to create a new Group
@@ -78,6 +79,10 @@ Feature: Group Management
       | Starbolt |
 
   Scenario: I visit the edit page of a Group and I can remove a Task
+    When I visit the edit page of the Group "Task Force 2"
+     And I remove the Task "Attack Warlock"
+     And I click the button update
+    Then "Task Force 2" remains only with Task "Save Starbolt"
 
   Scenario: I visit the edit page of a Group and I can add a Task
 

@@ -164,3 +164,13 @@ Then(/^"(.*?)" has the mutants$/) do |group_name, table|
   data.shift # remove header
   expect(group.mutants.map {|m| m.name}.sort).to eq(data.map{|d| d[0].strip}.sort)
 end
+
+And(/^I remove the Task "(.*?)"$/) do |task_name|
+  @page.tasks.unselect task_name
+end
+
+Then(/^"(.*?)" remains only with Task "(.*?)"$/) do |group_name, task_name|
+  group = Mutants::Group.find_by_name!(group_name)
+  expect(group.tasks.count).to eq(1)
+  expect(group.tasks.first.name).to eq(task_name)
+end
