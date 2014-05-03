@@ -90,4 +90,14 @@ describe Mutants::TasksController do
     end
   end
 
+  describe '#edit' do
+    let(:task) { create :task }
+    it 'instantiates a task based on the id in the params' do
+      get :edit, :id => task.to_param
+
+      expect(response.status).to eq(200)
+      expect(assigns(:task).id).to eq(task.id)
+    end
+  end
+
 end
