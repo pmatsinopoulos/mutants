@@ -71,3 +71,46 @@ And(/^New group has been assigned the following Tasks$/) do |table|
   data.shift # remove header
   expect(@group.tasks.map{|t| t.name}.sort).to eq(data.map{|d| d[0]}.sort)
 end
+
+And(/^A list of groups$/) do |table|
+  data = table.raw
+  data.shift # remove header
+  @groups = []
+  data.each do |row|
+    name_of_group = row[0]
+    mutants = row[1]
+    tasks = row[2]
+
+    group = Mutants::Group.new
+
+    group.name       = name_of_group.strip
+    group.mutant_ids = mutants.split(',').map{|name| Mutants::Mutant.find_by_name!(name.strip).id }
+    group.task_ids   = tasks.split(',').map{|name| Mutants::Task.find_by_name!(name.strip).id }
+    group.save!
+
+    @groups << group
+  end
+end
+
+When(/^I visit groups management page$/) do
+  @page = Mutants::Pages::GroupManagement.new
+  @page.load
+end
+
+Then(/^I see the list of groups$/) do
+  @groups.sort {|a,b| a.name <=> b.name}.each_with_index do |group, index|
+    expect(@page.group_list_items[index].name).to eq(group.name)
+  end
+end
+
+And(/^For each group I see the number of Mutants inside$/) do
+  @groups.sort {|a,b| a.name <=> b.name}.each_with_index do |group, index|
+    expect(@page.group_list_items[index].number_of_mutants).to eq(group.mutants.count)
+  end
+end
+
+And(/^The number of Tasks assigned$/) do
+  @groups.sort {|a,b| a.name <=> b.name}.each_with_index do |group, index|
+    expect(@page.group_list_items[index].number_of_tasks).to eq(group.tasks.count)
+  end
+end

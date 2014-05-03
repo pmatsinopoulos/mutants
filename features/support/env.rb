@@ -86,6 +86,8 @@ require 'new_task'
 require 'edit_task'
 require 'new_group'
 require 'edit_group'
+require 'group_list_item'
+require 'group_management'
 require "task_management"
 
 

@@ -16,7 +16,10 @@ module Mutants
     end
 
     def edit
+    end
 
+    def index
+      @groups = Mutants::Group.order(:name)
     end
 
     private

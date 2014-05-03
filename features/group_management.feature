@@ -34,3 +34,24 @@ Feature: Group Management
        | Name              |
        | Help Tyger Tiger  |
        | Destroy Mammomax  |
+
+  Scenario: When I visit the list of Groups I see the existing Groups and the Number of Mutants and Tasks Assigned
+    Given A list of Mutants
+      | Name       |
+      | Hellion    |
+      | Selene     |
+      | Trance     |
+      | Magus      |
+    And A list of tasks
+      | Name              |
+      | Help Tyger Tiger  |
+      | Destroy Mammomax  |
+      | Attack Warlock    |
+    And A list of groups
+      | Name         | Mutants         | Tasks                              |
+      | Task Force 1 | Hellion, Trance | Help Tyger Tiger, Destroy Mammomax |
+      | Task Force 2 | Selene,  Magus  | Attack Warlock                     |
+    When I visit groups management page
+    Then I see the list of groups
+     And For each group I see the number of Mutants inside
+     And The number of Tasks assigned
