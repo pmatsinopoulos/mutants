@@ -18,7 +18,7 @@ module Mutants
         redirect_to edit_task_path(@task)
       else
         flash.now[:alert] = "Cannot create task!"
-        render :new
+        render :new, :status => :unprocessable_entity
       end
     end
 

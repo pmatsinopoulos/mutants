@@ -60,4 +60,34 @@ describe Mutants::TasksController do
     end
   end
 
+  describe '#create' do
+    context 'when params allow the task to be saved' do
+      let(:params) { {name: SecureRandom.hex} }
+      it 'creates a task successfully and redirects to edit path' do
+        expect do
+          post :create, :mutants_task => params
+        end.to change { Mutants::Task.count }.by(1)
+
+        created_task = Mutants::Task.last
+        expect(response).to redirect_to(edit_task_path(created_task))
+        expect(flash[:notice]).to eq('Task has been created successfully!')
+      end
+    end
+
+    context 'when params do not allow the task to be saved' do
+      let(:params) { {name: nil} }
+      it 'creates a task successfully and redirects to edit path' do
+        expect do
+          post :create, :mutants_task => params
+        end.to_not change { Mutants::Task.count }
+
+        expect(response.status).to eq(422)
+        expect(flash[:alert]).to eq('Cannot create task!')
+        assigned_task = assigns(:task)
+        expect(assigned_task).to be_a(Mutants::Task)
+        expect(assigned_task).to be_a_new_record
+      end
+    end
+  end
+
 end
