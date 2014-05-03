@@ -9,3 +9,7 @@ Given(/^A list of tasks$/) do |table|
   end
   expect(@tasks.count).to eq(data.size - 1)
 end
+
+And(/^I click on the search button$/) do
+  @page.search_button.click
+end

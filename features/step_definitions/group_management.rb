@@ -218,3 +218,23 @@ end
 And(/^"(.*?)" does not exist anymore$/) do |group_name|
   expect(Mutants::Group.where(:name => group_name).count).to be_zero
 end
+
+And(/^I fill in the Groups search box with "(.*?)"$/) do |keyword|
+  @page = Mutants::Pages::GroupManagement.new
+  @page.search_box.set keyword
+end
+
+Then(/^Group list displays all groups that match "(.*?)"$/) do |keyword|
+  @page.wait_for_group_list_items
+  expect(@page).to have_group_list_items
+  group_list = @page.group_list_items
+
+  groups_matching = Mutants::Group.where("name like ?", "%#{keyword}%").order(:name).all.map{|g| {:name => g.name, :id => g.id}}
+
+  expect(group_list).to have(groups_matching.count).elements
+  expect(group_list.first.name).to eq(groups_matching.first[:name])
+  expect(group_list.last.name).to eq(groups_matching.last[:name])
+
+  expect(group_list.first.id).to eq(groups_matching.first[:id])
+  expect(group_list.last.id).to eq(groups_matching.last[:id])
+end
