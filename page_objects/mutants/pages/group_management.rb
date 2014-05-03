@@ -7,7 +7,7 @@ module Mutants
 
       # element  :search_box,                                    '#search_box'
       # element  :search_button,                                 '#search_button'
-      # element  :new_task,                                      '#new_task'
+      element  :create_new_group,                                '#new_group'
       sections :group_list_items, Mutants::Pages::GroupListItem, '#group_list tbody tr'
     end
   end

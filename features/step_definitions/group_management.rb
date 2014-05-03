@@ -194,3 +194,12 @@ Then(/^I am on the Groups management page$/) do
   @page = Mutants::Pages::GroupManagement.new
   expect(@page).to be_displayed
 end
+
+And(/^I click on create new Group link$/) do
+  @page.create_new_group.click
+end
+
+Then(/^I am on the create new Group page$/) do
+  @page = Mutants::Pages::NewGroup.new
+  expect(@page).to be_displayed
+end

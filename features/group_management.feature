@@ -100,6 +100,9 @@ Feature: Group Management
     Then I am on the Groups management page
 
   Scenario: I visit the Groups Management page and I can go to creation of new Group
+    When I visit groups management page
+     And I click on create new Group link
+    Then I am on the create new Group page
 
   Scenario: I visit the Groups Management page and I can delete a Group
 
