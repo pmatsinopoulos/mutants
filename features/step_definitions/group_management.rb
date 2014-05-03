@@ -114,3 +114,14 @@ And(/^The number of Tasks assigned$/) do
     expect(@page.group_list_items[index].number_of_tasks).to eq(group.tasks.count)
   end
 end
+
+And(/^I click on the name of the Group "(.*?)"$/) do |group_name|
+  @group_name = group_name # will need that on the next step
+  @page.group_list_items.select {|li| li.name == @group_name}.first.edit_page.click
+end
+
+Then(/^I can see the edit page of this Group$/) do
+  @page = Mutants::Pages::EditGroup.new
+  expect(@page).to be_displayed
+  expect(@page.name.value).to eq(@group_name)
+end

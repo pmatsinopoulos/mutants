@@ -16,6 +16,7 @@ module Mutants
     end
 
     def edit
+      @group = Mutants::Group.find(params[:id])
     end
 
     def index

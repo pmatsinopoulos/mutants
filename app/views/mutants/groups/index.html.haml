@@ -10,7 +10,7 @@
       - @groups.each do |g|
         %tr
           %td= g.id
-          %td= g.name
+          %td= link_to g.name, edit_group_path(g)
           %td
             Mutants
             %span#number_of_mutants= g.mutants.count

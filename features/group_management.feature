@@ -48,3 +48,8 @@ Feature: Group Management
     Then I see the list of groups
      And For each group I see the number of Mutants inside
      And The number of Tasks assigned
+
+  Scenario: When I visit the list of Groups I can click on the name of a Group and I can go to edit the Group
+    When I visit groups management page
+     And I click on the name of the Group "Task Force 2"
+    Then I can see the edit page of this Group

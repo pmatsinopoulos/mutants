@@ -7,7 +7,7 @@ module Mutants
       element :number_of_tasks,   "td:nth-of-type(4) span#number_of_tasks"
 
       element :delete,    "td:nth-of-type(4) a[name='delete-task']"
-      element :edit_page, "td:nth-of-type(5) a"
+      element :edit_page, "td:nth-of-type(2) a"
 
       alias_method :orig_id, :id
       def id
