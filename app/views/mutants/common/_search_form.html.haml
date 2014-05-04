@@ -1,0 +1,7 @@
+.row
+  .col-md-12
+    = form_tag path, method: :get, id: 'search_form', class: 'form-inline text-right', role: 'form' do
+      .form-group
+        = label_tag :search_box, search_label
+        = search_field_tag :search_box, params[:q], name: 'q', id: 'search_box', class: 'form-control', placeholder: placeholder
+      = submit_tag 'Search', id: 'search_button', class: 'btn btn-default'

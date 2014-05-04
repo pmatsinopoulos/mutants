@@ -1,5 +1,6 @@
-= form_for @task, url: @task.persisted? ? task_path(@task) : tasks_path, html: {id: 'task_form'} do |f|
-  = f.text_field :name, id: 'task_name'
-  = f.submit id: 'save_task'
+%h2 Task Details
 
-= link_to 'Tasks', tasks_path, id: 'task_list'
+= simple_form_for @task, url: @task.persisted? ? task_path(@task) : tasks_path, html: {id: 'task_form'} do |f|
+  .form-group
+    = f.input :name, input_html: {id: 'task_name', class: 'form-control'}, placeholder: 'Give Task Name'
+  = f.submit id: 'save_task', class: 'btn btn-default'

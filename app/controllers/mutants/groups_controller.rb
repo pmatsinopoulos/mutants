@@ -7,9 +7,10 @@ module Mutants
     def create
       @group = Mutants::Group.new(group_params)
       if @group.save
-        redirect_to edit_group_url(@group), notice: 'Group has been created successfully!'
+        flash[:success] = 'Group has been created successfully!'
+        redirect_to edit_group_url(@group)
       else
-        flash.now[:alert] = 'Group cannot be created'
+        flash.now[:error] = 'Group cannot be created'
         render :new, status: :unprocessable_entity
       end
     end
@@ -21,9 +22,10 @@ module Mutants
     def update
       @group = Mutants::Group.find(params[:id])
       if @group.update_attributes group_params
-        redirect_to edit_group_url(@group), :notice => 'Group has been successfully updated'
+        flash[:success] = 'Group has been successfully updated'
+        redirect_to edit_group_url(@group)
       else
-        flash.now[:alert] = 'Cannot update Group'
+        flash.now[:error] = 'Cannot update Group'
         render :edit, status: :unprocessable_entity
       end
     end
@@ -38,9 +40,11 @@ module Mutants
     def destroy
       @group = Mutants::Group.find(params[:id])
       if @group.destroy
-        redirect_to groups_url, :notice => 'Group has been successfully deleted!'
+        flash[:success] = 'Group has been successfully deleted!'
+        redirect_to groups_url
       else
-        redirect_to groups_url, :alert => 'Cannot delete Group!'
+        flash[:error] = 'Cannot delete Group!'
+        redirect_to groups_url
       end
     end
 

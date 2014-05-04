@@ -29,6 +29,10 @@ gem 'nilify_blanks'
 
 gem 'haml-rails'
 
+gem 'bootstrap-sass', '~> 3.1.1'
+
+gem 'simple_form'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'connection_pool'
@@ -43,6 +47,8 @@ group :test do
   gem 'selenium-webdriver'
   gem "launchy"
 end
+
+gem 'thin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

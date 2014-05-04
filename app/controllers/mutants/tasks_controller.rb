@@ -14,10 +14,10 @@ module Mutants
     def create
       @task = Mutants::Task.new task_params
       if @task.save
-        flash[:notice] = "Task has been created successfully!"
+        flash[:success] = "Task has been created successfully!"
         redirect_to edit_task_url(@task)
       else
-        flash.now[:alert] = "Cannot create task!"
+        flash.now[:error] = "Cannot create task!"
         render :new, status: :unprocessable_entity
       end
     end
@@ -29,10 +29,10 @@ module Mutants
     def update
       @task = Mutants::Task.find(params[:id])
       if @task.update_attributes task_params
-        flash[:notice] = "Task has been successfully updated!"
+        flash[:success] = "Task has been successfully updated!"
         redirect_to edit_task_url(@task)
       else
-        flash.now[:alert] = "Cannot update task!"
+        flash.now[:error] = "Cannot update task!"
         render :edit, status: :unprocessable_entity
       end
     end
@@ -40,9 +40,11 @@ module Mutants
     def destroy
       @task = Mutants::Task.find(params[:id])
       if @task.destroy
-        redirect_to tasks_url, notice: 'Task has been successfully deleted!'
+        flash[:success] = 'Task has been successfully deleted!'
+        redirect_to tasks_url
       else
-        redirect_to tasks_url, alert: 'Cannot delete task!'
+        flash[:error] = 'Cannot delete task!'
+        redirect_to tasks_url
       end
     end
 

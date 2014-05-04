@@ -1,0 +1,18 @@
+%nav.navbar.navbar-default{role: "navigation"}
+  .container-fluid
+
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: "#"} Panayotis G. Matsinopoulos
+
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        - all_links = ['Groups', 'Tasks']
+        - all_links.each do |link|
+          - active = controller_name == link.downcase
+          %li{class: active ? 'active' : ''}
+            = link_to link, send(:"#{link.downcase}_path")

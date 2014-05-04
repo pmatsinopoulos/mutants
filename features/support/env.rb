@@ -82,6 +82,7 @@ end
 
 require 'task_list_item'
 require 'application_page'
+require 'task_form'
 require 'new_task'
 require 'edit_task'
 require 'group_form'

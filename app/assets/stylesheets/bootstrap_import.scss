@@ -1,0 +1,20 @@
+@import "bootstrap";
+@import "bootstrap/theme";
+
+.table-index {
+  @extend .table, .table-striped, .table-hover, .table-condensed;
+}
+
+#search_box {
+  width: 18em;
+}
+
+.error
+{
+  color: Red;
+}
+
+#flash_message p
+{
+  padding: 10px 10px;
+}

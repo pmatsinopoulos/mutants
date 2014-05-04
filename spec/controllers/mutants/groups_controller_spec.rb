@@ -20,7 +20,7 @@ describe Mutants::GroupsController do
 
         created_group = Mutants::Group.last
         expect(response).to redirect_to(edit_group_url(created_group))
-        expect(flash[:notice]).to eq('Group has been created successfully!')
+        expect(flash[:success]).to eq('Group has been created successfully!')
       end
     end
 
@@ -32,7 +32,7 @@ describe Mutants::GroupsController do
         end.to_not change { Mutants::Group.count }
 
         expect(response.status).to eq(422)
-        expect(flash[:alert]).to eq('Group cannot be created')
+        expect(flash[:error]).to eq('Group cannot be created')
         assigned_group = assigns(:group)
         expect(assigned_group).to be_a(Mutants::Group)
         expect(assigned_group).to be_a_new_record
@@ -135,7 +135,7 @@ describe Mutants::GroupsController do
         end.to change { Mutants::Group.count }.by(-1)
 
         expect(response).to redirect_to(groups_url)
-        expect(flash[:notice]).to eq('Group has been successfully deleted!')
+        expect(flash[:success]).to eq('Group has been successfully deleted!')
       end
     end
 
