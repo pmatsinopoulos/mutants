@@ -29,14 +29,14 @@ Then(/^I get a confirmation that task has been created successfully$/) do
   @edit_task_page = Mutants::Pages::EditTask.new
   expect(@edit_task_page).to be_displayed
 
-  expect(@edit_task_page.flash).to eq("Task has been created successfully!")
+  expect(@edit_task_page.flash).to include("Task has been created successfully!")
 end
 
 Then(/^I get an error message$/) do
   @new_task_page = Mutants::Pages::NewTask.new
   expect(@new_task_page).to be_displayed
 
-  expect(@new_task_page.flash).to eq("Cannot create task!")
+  expect(@new_task_page.flash).to include("Cannot create task!")
 end
 
 When(/^I visit the page of the task "(.*?)"$/) do |task_name|
@@ -56,7 +56,7 @@ end
 Then(/^I get a confirmation message that the task has been updated$/) do
   expect(@edit_task_page).to be_displayed
 
-  expect(@edit_task_page.flash).to eq("Task has been successfully updated!")
+  expect(@edit_task_page.flash).to include("Task has been successfully updated!")
 end
 
 And(/^I see the task having the new name "(.*?)"$/) do |task_name|

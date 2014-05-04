@@ -70,7 +70,7 @@ describe Mutants::TasksController do
 
         created_task = Mutants::Task.last
         expect(response).to redirect_to(edit_task_url(created_task))
-        expect(flash[:notice]).to eq('Task has been created successfully!')
+        expect(flash[:success]).to eq('Task has been created successfully!')
       end
     end
 
@@ -82,7 +82,7 @@ describe Mutants::TasksController do
         end.to_not change { Mutants::Task.count }
 
         expect(response.status).to eq(422)
-        expect(flash[:alert]).to eq('Cannot create task!')
+        expect(flash[:error]).to eq('Cannot create task!')
         assigned_task = assigns(:task)
         expect(assigned_task).to be_a(Mutants::Task)
         expect(assigned_task).to be_a_new_record
@@ -135,7 +135,7 @@ describe Mutants::TasksController do
         end.to change { Mutants::Task.count }.by(-1)
 
         expect(response).to redirect_to(tasks_url)
-        expect(flash[:notice]).to eq('Task has been successfully deleted!')
+        expect(flash[:success]).to eq('Task has been successfully deleted!')
       end
     end
 

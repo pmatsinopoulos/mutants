@@ -54,7 +54,7 @@ end
 Then(/^I see a message that group has been created successfully$/) do
   @page = Mutants::Pages::EditGroup.new
   expect(@page).to be_displayed
-  expect(@page.flash).to eq("Group has been created successfully!")
+  expect(@page.flash).to include("Group has been created successfully!")
   @group = Mutants::Group.last
 end
 
@@ -212,7 +212,7 @@ And(/^I click on the delete link for the Group "(.*?)"$/) do |group_name|
 end
 
 Then(/^I get a confirmation message that the Group has been deleted$/) do
-  expect(@page.flash).to eq('Group has been successfully deleted!')
+  expect(@page.flash).to include('Group has been successfully deleted!')
 end
 
 And(/^"(.*?)" does not exist anymore$/) do |group_name|
