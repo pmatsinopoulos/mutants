@@ -29,6 +29,8 @@ gem 'nilify_blanks'
 
 gem 'haml-rails'
 
+gem 'bootstrap-sass', '~> 3.1.1'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'connection_pool'
