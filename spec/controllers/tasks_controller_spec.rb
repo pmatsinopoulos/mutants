@@ -69,7 +69,7 @@ describe Mutants::TasksController do
         end.to change { Mutants::Task.count }.by(1)
 
         created_task = Mutants::Task.last
-        expect(response).to redirect_to(edit_task_path(created_task))
+        expect(response).to redirect_to(edit_task_url(created_task))
         expect(flash[:notice]).to eq('Task has been created successfully!')
       end
     end
@@ -109,7 +109,7 @@ describe Mutants::TasksController do
       it 'can update the name of a task' do
         put :update, id: task.to_param, mutants_task: params
 
-        expect(response).to redirect_to(edit_task_path(task))
+        expect(response).to redirect_to(edit_task_url(task))
         expect(task.reload.name).to eq(new_name)
       end
     end
@@ -134,7 +134,7 @@ describe Mutants::TasksController do
           delete :destroy, id: task.to_param
         end.to change { Mutants::Task.count }.by(-1)
 
-        expect(response).to redirect_to(tasks_path)
+        expect(response).to redirect_to(tasks_url)
         expect(flash[:notice]).to eq('Task has been successfully deleted!')
       end
     end
@@ -147,7 +147,7 @@ describe Mutants::TasksController do
           delete :destroy, id: task.to_param
         end.to_not change { Mutants::Task.count }
 
-        expect(response).to redirect_to(tasks_path)
+        expect(response).to redirect_to(tasks_url)
       end
     end
   end

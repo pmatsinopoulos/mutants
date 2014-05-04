@@ -19,7 +19,7 @@ describe Mutants::GroupsController do
         end.to change { Mutants::Group.count }.by(1)
 
         created_group = Mutants::Group.last
-        expect(response).to redirect_to(edit_group_path(created_group))
+        expect(response).to redirect_to(edit_group_url(created_group))
         expect(flash[:notice]).to eq('Group has been created successfully!')
       end
     end
@@ -59,7 +59,7 @@ describe Mutants::GroupsController do
       it 'can update the name of a group' do
         put :update, id: group.to_param, mutants_group: params
 
-        expect(response).to redirect_to(edit_group_path(group))
+        expect(response).to redirect_to(edit_group_url(group))
         expect(group.reload.name).to eq(new_name)
       end
     end
@@ -134,7 +134,7 @@ describe Mutants::GroupsController do
           delete :destroy, id: group.to_param
         end.to change { Mutants::Group.count }.by(-1)
 
-        expect(response).to redirect_to(groups_path)
+        expect(response).to redirect_to(groups_url)
         expect(flash[:notice]).to eq('Group has been successfully deleted!')
       end
     end
@@ -147,7 +147,7 @@ describe Mutants::GroupsController do
           delete :destroy, id: group.to_param
         end.to_not change { Mutants::Group.count }
 
-        expect(response).to redirect_to(groups_path)
+        expect(response).to redirect_to(groups_url)
       end
     end
   end
