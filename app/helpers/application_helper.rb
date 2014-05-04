@@ -12,4 +12,14 @@ module ApplicationHelper
       'info'
     end
   end
+
+  def number_of_mutants(task)
+    if task.mutants.count == 1
+      '1 Mutant'
+    elsif task.mutants.count > 1
+      "#{task.mutants.count} Mutants"
+    else
+      'No Mutant'
+    end
+  end
 end

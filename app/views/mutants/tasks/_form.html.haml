@@ -4,5 +4,3 @@
   .form-group
     = f.input :name, input_html: {id: 'task_name', class: 'form-control'}, placeholder: 'Give Task Name'
   = f.submit id: 'save_task', class: 'btn btn-default'
-
-= link_to 'Tasks', tasks_path, id: 'task_list'

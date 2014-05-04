@@ -15,6 +15,6 @@
           %td= t.id
           %td= link_to t.name, edit_task_path(t)
           %td
-            Mutants
-            %span#number_of_mutants= t.mutants.count
+            %span#number_of_mutants
+              = number_of_mutants(t)
           %td= link_to 'Delete', task_path(t), id: "task_delete_action_#{t.id}", name: 'delete-task', method: 'delete', data: {confirm: 'Are you sure that you want to delete this Task?'}

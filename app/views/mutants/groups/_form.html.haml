@@ -11,5 +11,3 @@
     = f.input :task_ids, label: 'Tasks', collection: Mutants::Task.order(:name), value_metho: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control'}
 
   = f.submit id: 'save_group', class: 'btn btn-default'
-
-= link_to 'Groups', groups_path

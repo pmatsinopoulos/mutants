@@ -50,7 +50,7 @@ And(/^I change the name to "(.*?)"$/) do |task_name|
 end
 
 And(/^I click on Update button$/) do
-  @edit_task_page.update.click
+  @edit_task_page.save.click
 end
 
 Then(/^I get a confirmation message that the task has been updated$/) do
