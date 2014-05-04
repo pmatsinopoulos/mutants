@@ -1,5 +1,9 @@
+%h2 Task Details
+
 = form_for @task, url: @task.persisted? ? task_path(@task) : tasks_path, html: {id: 'task_form'} do |f|
-  = f.text_field :name, id: 'task_name'
-  = f.submit id: 'save_task'
+  .form-group
+    = f.label      :name
+    = f.text_field :name, id: 'task_name', class: 'form-control', placeholder: 'Give Task Name'
+  = f.submit id: 'save_task', class: 'btn btn-default'
 
 = link_to 'Tasks', tasks_path, id: 'task_list'

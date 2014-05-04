@@ -4,3 +4,7 @@
 .table-index {
   @extend .table, .table-striped, .table-hover, .table-condensed;
 }
+
+#search_box {
+  width: 18em;
+}
