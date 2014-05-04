@@ -2,7 +2,7 @@
 = render partial: 'task_actions'
 
 - unless @tasks.blank?
-  %table#task_list
+  %table#task_list{class: 'table-index'}
     %thead
       %tr
         %th ID

@@ -7,7 +7,7 @@ describe Mutants::WelcomeController do
 
       expect(response.status).to eq(200)
       expect(response).to render_template 'mutants/welcome/index'
-      expect(response).to render_template 'layouts/welcome'
+      expect(response).to render_template 'layouts/application'
     end
   end
 end

@@ -2,15 +2,41 @@
 %html
   %head
     %title Mutants
+    %meta{name: 'viewport', content: 'widht=device-widht, initial-scale=1'}
+
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   %body
+    = image_tag '_Elder_Scrolls_Online__barbarian_battling_with_mutant_045894_.jpg', class: 'bg'
 
-    #flash
-      - flash.each do |name, message|
-        #flash_message
-          = message
+    #body_container.container
 
-    = yield
+      #flash
+        - flash.each do |name, message|
+          #flash_message
+            = message
+
+      = yield
+
+      %p
+        I am a
+        %code Software Engineer
+        and I love it!
+      %address
+        %strong Panayotis G. Matsinopoulos
+        %br/
+        Somewhere in the World
+        %br/
+        Remote but can be reached on Skype:
+        %em panayotis.matsinopoulos
+        %br/
+        %abbr{title: "Call me on Voice"} V:
+        +30 697 26 69 766
+
+      %address
+        %strong Panayotis G. Matsinopoulos
+        %br/
+        = mail_to 'panayotis@matsinopoulos.gr', 'Contact Me'
 

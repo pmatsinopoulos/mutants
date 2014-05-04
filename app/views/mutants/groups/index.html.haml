@@ -2,7 +2,7 @@
 = render partial: 'group_actions'
 
 - unless @groups.blank?
-  %table#group_list
+  %table#group_list{class: 'table-index'}
     %thead
       %tr
         %th ID

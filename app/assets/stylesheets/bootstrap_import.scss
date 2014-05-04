@@ -1,2 +1,6 @@
 @import "bootstrap";
 @import "bootstrap/theme";
+
+.table-index {
+  @extend .table, .table-striped, .table-hover, .table-condensed;
+}
