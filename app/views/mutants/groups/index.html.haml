@@ -16,9 +16,9 @@
           %td= g.id
           %td= link_to g.name, edit_group_path(g)
           %td
-            Mutants
-            %span#number_of_mutants= g.mutants.count
+            %span#number_of_mutants
+              = number_of_mutants(g)
           %td
-            Tasks
-            %span#number_of_tasks= g.tasks.count
+            %span#number_of_tasks
+              = number_of_tasks(g)
           %td= link_to 'Delete', group_path(g), id: "group_delete_action_#{g.id}", name: 'delete-task', method: 'delete', data: {confirm: 'Are you sure that you want to delete this Group?'}
