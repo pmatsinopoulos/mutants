@@ -1,0 +1,1 @@
+['Hellion', 'Selene', 'Trance', 'Magus', 'Starbolt'].each {|name| Mutants::Mutant.where(name: name).first_or_create!}
