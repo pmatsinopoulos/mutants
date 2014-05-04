@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
-# Use mysql as the database for Active Record
-gem 'mysql2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,6 +33,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'simple_form'
 
 group :development, :test do
+  # Use mysql as the database for Active Record
+  gem 'mysql2'
   gem 'rspec-rails'
   gem 'connection_pool'
 end
