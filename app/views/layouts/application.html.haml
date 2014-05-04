@@ -25,6 +25,12 @@
 
           = yield
 
+      .row
+        #middle_row_center_column.col-md-8.col-md-offset-2
+
+      .row
+        #footer_center_column.col-md-8.col-md-offset-2
+
           %p
             I am a
             %code Software Engineer
@@ -32,9 +38,11 @@
           %address
             %strong Panayotis G. Matsinopoulos
             %br/
-            Somewhere in the World
+            = 'Somewhere in the World...'
             %br/
-            Remote but can be reached on Skype:
+            = '... working remotely...'
+            %br/
+            = '... but can be reached on Skype:'
             %em panayotis.matsinopoulos
             %br/
             %abbr{title: "Call me on Voice"} V:
@@ -47,3 +55,6 @@
             %br/
             = mail_to 'panayotis@matsinopoulos.gr', 'Contact Me'
 
+          %p
+            %small
+              = link_to 'Source Code', 'https://github.com/pmatsinopoulos/mutants', title: 'Source code of this demo application can be found here'

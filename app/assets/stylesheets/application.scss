@@ -14,10 +14,26 @@
  *= require_self
  */
 
-#main_center_column {
+#main_center_column,
+#footer_center_column {
   position: relative;
   background-color: White;
   opacity: 0.8;
+  border-radius:20px;
+}
+
+#main_center_column {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+#footer_center_column {
+  padding-top: 20px;
+}
+
+#middle_row_center_column {
+  position: relative;
+  min-height: 100px;
 }
 
 
