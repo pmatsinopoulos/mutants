@@ -48,6 +48,7 @@ group :test do
   gem "capybara"
   gem 'selenium-webdriver'
   gem "launchy"
+  gem 'simplecov', '~> 0.7.1', :require => false
 end
 
 group :production do
