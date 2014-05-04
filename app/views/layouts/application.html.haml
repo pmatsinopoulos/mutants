@@ -12,36 +12,38 @@
     = image_tag '_Elder_Scrolls_Online__barbarian_battling_with_mutant_045894_.jpg', class: 'bg'
 
     #body_container.container
-      =render partial: 'layouts/navigation'
+      .row
+        #main_center_column.col-md-8.col-md-offset-2
+          =render partial: 'layouts/navigation'
 
-      #flash
-        - flash.each do |name, message|
-          -alert_category = alert_category(name)
-          #flash_message{class: "alert alert-#{alert_category}"}
-            %button{type: 'button', class: 'close', :'data-dismiss' => 'alert', :'aria-hidden' => 'true'} &times;
-            = message
+          #flash
+            - flash.each do |name, message|
+              -alert_category = alert_category(name)
+              #flash_message{class: "alert alert-#{alert_category}"}
+                %button{type: 'button', class: 'close', :'data-dismiss' => 'alert', :'aria-hidden' => 'true'} &times;
+                = message
 
-      = yield
+          = yield
 
-      %p
-        I am a
-        %code Software Engineer
-        and I love it!
-      %address
-        %strong Panayotis G. Matsinopoulos
-        %br/
-        Somewhere in the World
-        %br/
-        Remote but can be reached on Skype:
-        %em panayotis.matsinopoulos
-        %br/
-        %abbr{title: "Call me on Voice"} V:
-        +30 697 26 69 766
+          %p
+            I am a
+            %code Software Engineer
+            and I love it!
+          %address
+            %strong Panayotis G. Matsinopoulos
+            %br/
+            Somewhere in the World
+            %br/
+            Remote but can be reached on Skype:
+            %em panayotis.matsinopoulos
+            %br/
+            %abbr{title: "Call me on Voice"} V:
+            +30 697 26 69 766
 
-      %address
-        %strong Panayotis G. Matsinopoulos
-        %br/
-        = link_to 'Read About Me Here', 'http://www.matsinopoulos.gr'
-        %br/
-        = mail_to 'panayotis@matsinopoulos.gr', 'Contact Me'
+          %address
+            %strong Panayotis G. Matsinopoulos
+            %br/
+            = link_to 'Read About Me Here', 'http://www.matsinopoulos.gr'
+            %br/
+            = mail_to 'panayotis@matsinopoulos.gr', 'Contact Me'
 
