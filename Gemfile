@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.1.1" # For deployment to Heroku
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
@@ -50,8 +51,8 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  gem 'rails_12factor' # For deployment to Heroku
+  gem 'pg'             # For deployment to Heroku
 end
 
 gem 'thin'
