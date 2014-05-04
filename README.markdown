@@ -1,9 +1,16 @@
 ## Mutants ##
 
 ### Live Demo ###
+
 Can be found [here](http://shielded-mesa-1223.herokuapp.com/)
 
 ### Brief ###
+
+#### What does this application do? ####
+
+Read the Features
+
+#### What's All About It? ####
 
 I am using this Rails application, among others, when teaching my students. Things that are interested are the following:
 
