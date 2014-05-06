@@ -52,6 +52,10 @@ group :test do
   gem 'simplecov', '~> 0.7.1', :require => false
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'thin'
 
 # Use ActiveModel has_secure_password
