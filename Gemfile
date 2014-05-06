@@ -33,9 +33,10 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'simple_form'
 
+# Use mysql as the database for Active Record
+gem 'mysql2'
+
 group :development, :test do
-  # Use mysql as the database for Active Record
-  gem 'mysql2'
   gem 'rspec-rails'
   gem 'connection_pool'
 end
@@ -49,11 +50,6 @@ group :test do
   gem 'selenium-webdriver'
   gem "launchy"
   gem 'simplecov', '~> 0.7.1', :require => false
-end
-
-group :production do
-  gem 'rails_12factor' # For deployment to Heroku
-  gem 'pg'             # For deployment to Heroku
 end
 
 gem 'thin'
