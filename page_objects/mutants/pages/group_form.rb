@@ -7,6 +7,7 @@ module Mutants
       element :create_button, "input[type='submit']"
       element :update,        "input[type='submit']"
       element :groups,        "a[href='/groups']"
+      element :new_task_link, "#new_task_link"
     end
   end
 end

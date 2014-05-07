@@ -238,3 +238,7 @@ Then(/^Group list displays all groups that match "(.*?)"$/) do |keyword|
   expect(group_list.first.id).to eq(groups_matching.first[:id])
   expect(group_list.last.id).to eq(groups_matching.last[:id])
 end
+
+And(/^I click on the New Task Link$/) do
+  @page.new_task_link.click
+end

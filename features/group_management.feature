@@ -120,4 +120,13 @@ Feature: Group Management
      And I click on the search button
     Then Group list displays all groups that match "Force"
 
+  Scenario: I want to be able to create a Task from within Group edit page without leaving Group Edit page
+    When I visit the edit page of the Group "Task Force 1"
+     And I click on the New Task Link
+    Then I can input the details of the new Task
+     And I can save the new Task
+     And I can see the new Task in the list of available Tasks on Group edit page
+     And The new Task is already selected
+     And When I save the Group
+    Then The new Task is associated to the particular Group
 
