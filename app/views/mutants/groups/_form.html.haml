@@ -9,7 +9,12 @@
 
   .form-group
     = f.label :tasks, 'Tasks'
-    = link_to '[New Task]', new_task_path, remote: true, id: 'new_task_link'
-    = f.input :task_ids, label: false, collection: Mutants::Task.order(:name), value_metho: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control'}
+    %span#group_management_new_task_link_span
+      = link_to '[New Task]', new_task_path, remote: true, id: 'new_task_link', 'data-type' => :html
+    #new_task_link_loader{class: 'preloader_hidden'}
+      = image_tag 'preloader-small.gif'
+    = f.input :task_ids, label: false, collection: Mutants::Task.order(:name), value_method: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control'}
 
   = f.submit id: 'save_group', class: 'btn btn-default'
+
+= render partial: 'mutants/common/modal', locals: {title: 'Task Details'}
