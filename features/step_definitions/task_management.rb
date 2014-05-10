@@ -13,23 +13,23 @@ Then(/^I see the list of tasks$/) do
 end
 
 When(/^I visit the create new task page$/) do
-  @edit_task_page = Mutants::Pages::NewTask.new
-  @edit_task_page.load
+  @page = Mutants::Pages::NewTask.new
+  @page.load
 end
 
 When(/^I fill in the name "(.*?)"$/) do |task_name|
-  @edit_task_page.task_name.set task_name
+  @page.task_name.set task_name
 end
 
 When(/^I click on the Save button$/) do
-  @edit_task_page.save.click
+  @page.save.click
 end
 
 Then(/^I get a confirmation that task has been created successfully$/) do
-  @edit_task_page = Mutants::Pages::EditTask.new
-  expect(@edit_task_page).to be_displayed
+  @page = Mutants::Pages::EditTask.new
+  expect(@page).to be_displayed
 
-  expect(@edit_task_page.flash).to include("Task has been created successfully!")
+  expect(@page.flash).to include("Task has been created successfully!")
 end
 
 Then(/^I get an error message$/) do
@@ -41,22 +41,22 @@ end
 
 When(/^I visit the page of the task "(.*?)"$/) do |task_name|
   @task = Mutants::Task.find_by_name!(task_name)
-  @edit_task_page = Mutants::Pages::EditTask.new
-  @edit_task_page.load(id: @task.id)
+  @page = Mutants::Pages::EditTask.new
+  @page.load(id: @task.id)
 end
 
 And(/^I change the name to "(.*?)"$/) do |task_name|
-  @edit_task_page.task_name.set task_name
+  @page.task_name.set task_name
 end
 
 And(/^I click on Update button$/) do
-  @edit_task_page.save.click
+  @page.save.click
 end
 
 Then(/^I get a confirmation message that the task has been updated$/) do
-  expect(@edit_task_page).to be_displayed
+  expect(@page).to be_displayed
 
-  expect(@edit_task_page.flash).to include("Task has been successfully updated!")
+  expect(@page.flash).to include("Task has been successfully updated!")
 end
 
 And(/^I see the task having the new name "(.*?)"$/) do |task_name|
@@ -109,7 +109,7 @@ Then(/^I am on the new task page$/) do
 end
 
 And(/^I click on the task list link$/) do
-  @edit_task_page.task_list.click
+  @page.task_list.click
 end
 
 Then(/^I am on the task list page$/) do

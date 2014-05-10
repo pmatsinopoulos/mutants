@@ -8,6 +8,13 @@
     = f.input :mutant_ids, label: 'Mutants', collection: Mutants::Mutant.order(:name), label_method: :name, value_method: :id, include_blank: true, input_html: {id: 'mutants', multiple: 'multiple', class: 'form-control'}
 
   .form-group
-    = f.input :task_ids, label: 'Tasks', collection: Mutants::Task.order(:name), value_metho: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control'}
+    = f.label :tasks, 'Tasks'
+    %span#group_management_new_task_link_span
+      = link_to '[New Task]', new_task_path, remote: true, id: 'new_task_link', 'data-type' => :html
+    #new_task_link_loader{class: 'preloader_hidden'}
+      = image_tag 'preloader-small.gif'
+    = f.input :task_ids, label: false, collection: Mutants::Task.order(:name), value_method: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control'}
 
   = f.submit id: 'save_group', class: 'btn btn-default'
+
+= render partial: 'mutants/common/modal', locals: {title: 'Task Details'}

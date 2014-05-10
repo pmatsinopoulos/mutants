@@ -238,3 +238,31 @@ Then(/^Group list displays all groups that match "(.*?)"$/) do |keyword|
   expect(group_list.first.id).to eq(groups_matching.first[:id])
   expect(group_list.last.id).to eq(groups_matching.last[:id])
 end
+
+And(/^I click on the New Task Link$/) do
+  @page.new_task_link.click
+end
+
+Then(/^I can input the details of the new Task$/) do
+  @new_task_name = "TaskName-#{SecureRandom.hex}"
+  @page.wait_until_modal_dialog_visible
+  @page.new_task_name.set @new_task_name
+end
+
+And(/^I can save the new Task$/) do
+  @page.save.click
+end
+
+And(/^I can see the new Task as selected in the list of available Tasks on Group page$/) do
+  expect(@page.selected_task_names).to include(@new_task_name)
+end
+
+Then(/^The new Task is associated to the particular Group$/) do
+  task = Mutants::Task.find_by_name(@new_task_name)
+  expect(task.group.id).to eq(@group.id)
+end
+
+And(/^I click on the Create button$/) do
+  @page.create_button.click
+  @group = Mutants::Group.last
+end

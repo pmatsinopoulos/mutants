@@ -58,35 +58,75 @@ describe Mutants::TasksController do
       expect(assigns(:task)).to be_a(Mutants::Task)
       expect(assigns(:task)).to be_new_record
     end
+
+    context 'when format is js' do
+      it 'responds with the form to input a new task' do
+        xhr :get, :new
+
+        expect(@response.status).to eq(200)
+        expect(@response).to render_template(layout: false)
+        expect(@response).to render_template(:new)
+      end
+    end
   end
 
   describe '#create' do
     context 'when params allow the task to be saved' do
       let(:params) { {name: SecureRandom.hex} }
-      it 'creates a task successfully and redirects to edit path' do
-        expect do
-          post :create, :mutants_task => params
-        end.to change { Mutants::Task.count }.by(1)
+      context 'when request is not xhr' do
+        it 'creates a task successfully and redirects to edit path' do
+          expect do
+            post :create, :mutants_task => params
+          end.to change { Mutants::Task.count }.by(1)
 
-        created_task = Mutants::Task.last
-        expect(response).to redirect_to(edit_task_url(created_task))
-        expect(flash[:success]).to eq('Task has been created successfully!')
+          created_task = Mutants::Task.last
+          expect(response).to redirect_to(edit_task_url(created_task))
+          expect(flash[:success]).to eq('Task has been created successfully!')
+        end
+      end
+      context 'when request is xhr' do
+        it 'creates a task successfully and redirects to edit path' do
+          expect do
+            xhr :post, :create, mutants_task: params
+          end.to change { Mutants::Task.count }.by(1)
+
+          expect(response.status).to eq(200)
+          expect(response).to render_template(layout: false)
+          expect(response).to render_template(:create)
+        end
       end
     end
 
     context 'when params do not allow the task to be saved' do
       let(:params) { {name: nil} }
-      it 'does not create the group and renders new' do
-        expect do
-          post :create, :mutants_task => params
-        end.to_not change { Mutants::Task.count }
+      context 'when request is not xhr' do
+        it 'does not create the group and renders new' do
+          expect do
+            post :create, :mutants_task => params
+          end.to_not change { Mutants::Task.count }
 
-        expect(response.status).to eq(422)
-        expect(flash[:error]).to eq('Cannot create task!')
-        assigned_task = assigns(:task)
-        expect(assigned_task).to be_a(Mutants::Task)
-        expect(assigned_task).to be_a_new_record
-        expect(response).to render_template(:new)
+          expect(response.status).to eq(422)
+          expect(flash[:error]).to eq('Cannot create task!')
+          assigned_task = assigns(:task)
+          expect(assigned_task).to be_a(Mutants::Task)
+          expect(assigned_task).to be_a_new_record
+          expect(response).to render_template(:new)
+          expect(response).to render_template(layout: :application)
+        end
+      end
+      context 'when request is xhr' do
+        it 'does not create the group and renders new' do
+          expect do
+            xhr :post, :create, mutants_task: params
+          end.to_not change { Mutants::Task.count }
+
+          expect(response.status).to eq(422)
+          assigned_task = assigns(:task)
+          expect(assigned_task).to be_a(Mutants::Task)
+          expect(assigned_task).to be_a_new_record
+          expect(response).to render_template(:new)
+          expect(response).to render_template(layout: false)
+        end
       end
     end
   end
