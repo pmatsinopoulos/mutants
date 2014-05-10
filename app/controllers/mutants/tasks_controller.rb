@@ -17,11 +17,19 @@ module Mutants
     def create
       @task = Mutants::Task.new task_params
       if @task.save
-        flash[:success] = "Task has been created successfully!"
-        redirect_to edit_task_url(@task)
+        if request.xhr?
+          render layout: false
+        else
+          flash[:success] = "Task has been created successfully!"
+          redirect_to edit_task_url(@task)
+        end
       else
-        flash.now[:error] = "Cannot create task!"
-        render :new, status: :unprocessable_entity
+        if request.xhr?
+          render :new, layout: false, status: :unprocessable_entity
+        else
+          flash.now[:error] = "Cannot create task!"
+          render :new, status: :unprocessable_entity
+        end
       end
     end
 
