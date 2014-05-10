@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require_tree .
+//= require chosen-jquery
 
 $(document).off('.modal.data-api'); // Will be using the jQuery UI Modal Dialogs
 
