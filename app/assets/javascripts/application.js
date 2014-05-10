@@ -20,4 +20,6 @@
 
 $(document).off('.modal.data-api'); // Will be using the jQuery UI Modal Dialogs
 
-
+$(document).ready(function(){
+    $('.chosen-select').chosen({disable_search_threshold: 10});
+});

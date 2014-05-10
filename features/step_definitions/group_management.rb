@@ -251,10 +251,11 @@ end
 
 And(/^I can save the new Task$/) do
   @page.save.click
+  @new_task_id = Mutants::Task.find_by_name(@new_task_name).id
 end
 
 And(/^I can see the new Task as selected in the list of available Tasks on Group page$/) do
-  expect(@page.selected_task_names).to include(@new_task_name)
+  expect(@page.selected_task_ids).to include(@new_task_id)
 end
 
 Then(/^The new Task is associated to the particular Group$/) do

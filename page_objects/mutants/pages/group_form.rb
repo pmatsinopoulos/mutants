@@ -13,10 +13,10 @@ module Mutants
       element :new_task_name, "#task_name"
       element :save,          "#save_task"
       elements :task_details, "#tasks option"
-      elements :selected_tasks, "#tasks option[selected='selected']"
+      elements :selected_tasks, "#tasks option[selected='selected']", :visible => false
 
-      def selected_task_names
-        selected_tasks.map{|t| t.text}
+      def selected_task_ids
+        selected_tasks.map{|t| t.value.to_i}
       end
     end
   end
