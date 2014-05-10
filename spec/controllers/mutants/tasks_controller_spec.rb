@@ -60,13 +60,12 @@ describe Mutants::TasksController do
     end
 
     context 'when format is js' do
-      let(:format) { :js }
       it 'responds with the form to input a new task' do
-        get :new, format: format
+        xhr :get, :new
 
-        expect(response.status).to eq(200)
-        expect(response).to render_template(layout: false)
-        expect(response).to render_template(:new)
+        expect(@response.status).to eq(200)
+        expect(@response).to render_template(layout: false)
+        expect(@response).to render_template(:new)
       end
     end
   end

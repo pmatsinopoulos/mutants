@@ -10,10 +10,7 @@ module Mutants
     def new
       @task = Mutants::Task.new
       respond_to do |format|
-        format.html
-        format.js do
-           render :new, layout: false
-        end
+        format.html { render layout: !request.xhr? }
       end
     end
 
