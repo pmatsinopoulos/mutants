@@ -5,7 +5,7 @@
     = f.input :name, input_html: {id: 'name', class: 'form-control'}, placeholder: 'Give Group Name'
 
   .form-group
-    = f.input :mutant_ids, label: 'Mutants', collection: Mutants::Mutant.order(:name), label_method: :name, value_method: :id, include_blank: true, input_html: {id: 'mutants', multiple: 'multiple', class: 'form-control chosen-select', 'data-placeholder' => 'Choose a Mutant...'}
+    = f.input :mutant_ids, label: 'Mutants', collection: Mutants::Mutant.order(:name), label_method: :name, value_method: :id, include_blank: true, input_html: {id: 'mutants', multiple: 'multiple', class: 'form-control select2', 'data-placeholder' => 'Choose a Mutant...'}
 
   .form-group
     = f.label :tasks, 'Tasks'
@@ -13,7 +13,7 @@
       = link_to '[New Task]', new_task_path, remote: true, id: 'new_task_link', 'data-type' => :html
     #new_task_link_loader{class: 'preloader_hidden'}
       = image_tag 'preloader-small.gif'
-    = f.input :task_ids, label: false, collection: Mutants::Task.order(:name), value_method: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control chosen-select', 'data-placeholder' => 'Choose a Task...'}
+    = f.input :task_ids, label: false, collection: Mutants::Task.order(:name), value_method: :id, label_method: :name, include_blank: true, input_html: {id: 'tasks',   multiple: 'multiple', class: 'form-control select2', 'data-placeholder' => 'Choose a Task...'}
 
   = f.submit id: 'save_group', class: 'btn btn-default'
 

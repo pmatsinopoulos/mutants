@@ -2,7 +2,7 @@ $(document).on('ajax:success', 'form#task_form', function(e, data, status, xhr){
     $('#modal_dialog').dialog('close');
     // add the response to the available options
     $('select#tasks option:eq(0)').after(data);
-    $('select#tasks').trigger("chosen:updated");
+    $('select#tasks').trigger("change");
 }).on('ajax:error', 'form#task_form', function(e, xhr, status, error){
     $('form#task_form').html(xhr.responseText);
 }).on('ajax:beforeSend', 'form#task_form', function(){

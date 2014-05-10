@@ -17,10 +17,10 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require_tree .
-//= require chosen-jquery
+//= require select2
 
 $(document).off('.modal.data-api'); // Will be using the jQuery UI Modal Dialogs
 
 $(document).ready(function(){
-    $('.chosen-select').chosen({disable_search_threshold: 10});
+    $('.select2').select2();
 });

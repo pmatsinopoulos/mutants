@@ -26,7 +26,7 @@ I am using this Rails application, among others, when teaching my students. Thin
 10. `selenium-webdriver`. Has been used in a couple of tests when javascript was necessary.
 11. A full-page background image decorates the application. Nice technique to implement this has been found on [css-tricks](https://www.google.gr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCgQFjAA&url=http%3A%2F%2Fcss-tricks.com%2Fperfect-full-page-background-image%2F&ei=RSpmU4zWAomN7Qae8IGADg&usg=AFQjCNEhgsFuP7_T7nQ8VxEGzEt0rkktCw&bvm=bv.65788261,d.ZGU).
 12. Ajax techniques to demonstrate how one can create a resource while editing another.
-13. `chosen` jQuery plugin to have nice and user-friendly functional select boxes
+13. `select2-rails` jQuery plugin to have nice and user-friendly functional select boxes
 13. ...More about it, while teaching.
 
 You can always find me [here](mailto:panayotis@matsinopoulos.gr)

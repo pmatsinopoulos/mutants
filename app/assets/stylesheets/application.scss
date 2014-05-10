@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  *= require jquery.ui.all
- *= require chosen
+ *= require select2
+ *= require select2-bootstrap
  */
 
 #main_center_column,
