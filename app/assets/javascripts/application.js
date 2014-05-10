@@ -16,5 +16,9 @@
 
 // Loads all Bootstrap javascripts
 //= require bootstrap
-
+//= require jquery.ui.all
 //= require_tree .
+
+$(document).off('.modal.data-api'); // Will be using the jQuery UI Modal Dialogs
+
+
