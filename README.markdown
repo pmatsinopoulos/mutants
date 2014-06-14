@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/pmatsinopoulos/mutants.png)](https://codeclimate.com/github/pmatsinopoulos/mutants)
+[![Code Climate](https://codeclimate.com/github/pmatsinopoulos/mutants/coverage.png)](https://codeclimate.com/github/pmatsinopoulos/mutants)
 
 ## Mutants ##
 
