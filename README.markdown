@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/pmatsinopoulos/mutants.png)](https://codeclimate.com/github/pmatsinopoulos/mutants)
+
 ## Mutants ##
 
 ### Live Demo ###

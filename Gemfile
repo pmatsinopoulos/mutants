@@ -53,6 +53,7 @@ group :test do
   gem 'selenium-webdriver'
   gem "launchy"
   gem 'simplecov', '~> 0.7.1', :require => false
+  gem "codeclimate-test-reporter", require: false
 end
 
 group :production do
