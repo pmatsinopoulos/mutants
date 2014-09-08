@@ -229,7 +229,7 @@ Then(/^Group list displays all groups that match "(.*?)"$/) do |keyword|
   expect(@page).to have_group_list_items
   group_list = @page.group_list_items
 
-  groups_matching = Mutants::Group.where("name like ?", "%#{keyword}%").order(:name).all.map{|g| {:name => g.name, :id => g.id}}
+  groups_matching = Mutants::Group.where("name ilike ?", "%#{keyword}%").order(:name).all.map{|g| {:name => g.name, :id => g.id}}
 
   expect(group_list).to have(groups_matching.count).elements
   expect(group_list.first.name).to eq(groups_matching.first[:name])

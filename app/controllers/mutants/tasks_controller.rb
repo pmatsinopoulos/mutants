@@ -3,7 +3,7 @@ module Mutants
     def index
       q = params[:q]
       query = Mutants::Task.order(:name)
-      query = query.where("name like ?", "%#{params[:q]}%") if q.present?
+      query = query.where("name ilike ?", "%#{params[:q]}%") if q.present?
       @tasks = query
     end
 

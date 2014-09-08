@@ -36,8 +36,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'simple_form'
 
-# Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'pg'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -60,7 +59,8 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'thin'
+# Use unicorn as the app server
+gem 'unicorn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

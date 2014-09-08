@@ -89,7 +89,7 @@ Then(/^Task list displays all tasks that match "(.*?)"$/) do |keyword|
   expect(@task_management_page).to have_task_list_items
   task_list = @task_management_page.task_list_items
 
-  tasks_matching = Mutants::Task.where("name like ?", "%#{keyword}%").order(:name).all.map{|t| {:name => t.name, :id => t.id}}
+  tasks_matching = Mutants::Task.where("name ilike ?", "%#{keyword}%").order(:name).all.map{|t| {:name => t.name, :id => t.id}}
 
   expect(task_list).to have(tasks_matching.count).elements
   expect(task_list.first.name).to eq(tasks_matching.first[:name])

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140503062619) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "groups", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
@@ -28,7 +31,6 @@ ActiveRecord::Schema.define(version: 20140503062619) do
     t.integer  "group_id"
   end
 
-  add_index "mutants", ["group_id"], name: "tasks_mutant_fk", using: :btree
   add_index "mutants", ["name"], name: "mutants_name_uidx", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
@@ -38,7 +40,6 @@ ActiveRecord::Schema.define(version: 20140503062619) do
     t.integer  "group_id"
   end
 
-  add_index "tasks", ["group_id"], name: "tasks_group_fk", using: :btree
   add_index "tasks", ["name"], name: "tasks_name_uidx", unique: true, using: :btree
 
   add_foreign_key "mutants", "groups", name: "tasks_mutant_fk"

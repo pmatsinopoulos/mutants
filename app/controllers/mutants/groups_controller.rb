@@ -33,7 +33,7 @@ module Mutants
     def index
       q = params[:q]
       query = Mutants::Group.order(:name)
-      query = query.where("name like ?", "%#{params[:q]}%") if q.present?
+      query = query.where("name ilike ?", "%#{params[:q]}%") if q.present?
       @groups = query
     end
     
