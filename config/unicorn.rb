@@ -1,5 +1,5 @@
 # config/unicorn.rb
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 1)
 timeout 60
 timeout 300 if ENV['RACK_ENV'] == 'staging'
 timeout 300 if %w(development none).include? ENV['RACK_ENV']
